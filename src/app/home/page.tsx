@@ -164,10 +164,10 @@ export default function HomePage() {
         />
       </section>
 
-      {/* Finance — CV preview & download */}
+      {/* Finance — timeline, CV, seeking */}
       <section
         id="finance"
-        className="min-h-[60vh] border-t border-black/10 pl-16 md:pl-28 lg:pl-40 pr-8 py-24 relative"
+        className="border-t border-black/10 pl-16 md:pl-28 lg:pl-40 pr-8 py-24 relative"
       >
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -183,61 +183,126 @@ export default function HomePage() {
               {strings.sections.finance.title}
             </h2>
           </div>
+        </motion.div>
 
-          <div className="max-w-2xl">
-            <p className="font-sans text-black/40 text-base leading-relaxed mb-10">
-              {strings.sections.finance.placeholder}
-            </p>
-
+        {/* Experience timeline */}
+        <div className="max-w-3xl">
+          {strings.sections.finance.experience.map((exp, i) => (
             <motion.div
-              initial={{ opacity: 0, y: 12 }}
+              key={exp.company}
+              initial={{ opacity: 0, y: 24 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-60px" }}
-              transition={{ duration: 0.5, delay: 0.2 }}
-              className="flex flex-wrap gap-4"
+              transition={{ duration: 0.5, delay: i * 0.12 }}
+              className="relative pl-8 md:pl-12 pb-12 last:pb-0 group"
             >
-              <button
-                onClick={() => setCvModalOpen(true)}
-                className="group relative font-sans text-[11px] tracking-widest uppercase px-6 py-4 border border-black/20 hover:border-black transition-colors duration-300 overflow-hidden"
-              >
-                <span className="relative z-10 group-hover:text-cream transition-colors duration-300">
-                  {strings.sections.finance.cvPreview}
-                </span>
-                <span className="absolute inset-0 bg-black scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-300 ease-[cubic-bezier(0.22,1,0.36,1)]" />
-              </button>
+              {/* Vertical line */}
+              {i < strings.sections.finance.experience.length - 1 && (
+                <div className="absolute left-0 top-2 bottom-0 w-px bg-black/10" />
+              )}
 
-              <a
-                href={strings.sections.finance.cvFile}
-                download
-                className="group relative font-sans text-[11px] tracking-widest uppercase px-6 py-4 border border-red/30 hover:border-red transition-colors duration-300 overflow-hidden"
-              >
-                <span className="relative z-10 text-red/70 group-hover:text-cream transition-colors duration-300 flex items-center gap-2">
-                  <svg
-                    width="12"
-                    height="12"
-                    viewBox="0 0 14 14"
-                    fill="none"
-                    className="inline-block"
-                  >
-                    <path
-                      d="M7 1v9m0 0L3.5 6.5M7 10l3.5-3.5M1 13h12"
-                      stroke="currentColor"
-                      strokeWidth="1.2"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
-                  </svg>
-                  {strings.sections.finance.cvDownload}
+              {/* Dot marker */}
+              <div className="absolute left-0 top-[7px] w-[7px] h-[7px] -translate-x-[3px] bg-black/20 group-hover:bg-red transition-colors duration-300" />
+
+              {/* Year — bold, offset */}
+              <div className="flex flex-col md:flex-row md:items-baseline md:gap-6 mb-3">
+                <span className="font-serif text-2xl md:text-3xl font-normal leading-none">
+                  {exp.year}
                 </span>
-                <span className="absolute inset-0 bg-red scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-300 ease-[cubic-bezier(0.22,1,0.36,1)]" />
-              </a>
+                <span className="font-sans text-[11px] tracking-widest uppercase text-black/30 mt-1 md:mt-0">
+                  {exp.location}
+                </span>
+              </div>
+
+              {/* Company & role */}
+              <p className="font-sans text-sm font-medium text-black/80 mb-1">
+                {exp.company}
+              </p>
+              <p className="font-sans text-[13px] text-black/50 italic mb-2">
+                {exp.role}
+              </p>
+              <p className="font-sans text-sm text-black/40 leading-relaxed max-w-xl">
+                {exp.description}
+              </p>
             </motion.div>
+          ))}
+        </div>
 
-            <div className="mt-12 flex gap-3">
-              <div className="w-16 h-16 bg-red/15" />
-              <div className="w-px h-16 bg-black/10" />
-            </div>
-          </div>
+        {/* CV buttons */}
+        <motion.div
+          initial={{ opacity: 0, y: 12 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-60px" }}
+          transition={{ duration: 0.5, delay: 0.2 }}
+          className="flex flex-wrap gap-4 mt-16 max-w-3xl"
+        >
+          <button
+            onClick={() => setCvModalOpen(true)}
+            className="group relative font-sans text-[11px] tracking-widest uppercase px-6 py-4 border border-black/20 hover:border-black transition-colors duration-300 overflow-hidden"
+          >
+            <span className="relative z-10 group-hover:text-cream transition-colors duration-300">
+              {strings.sections.finance.cvPreview}
+            </span>
+            <span className="absolute inset-0 bg-black scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-300 ease-[cubic-bezier(0.22,1,0.36,1)]" />
+          </button>
+
+          <a
+            href={strings.sections.finance.cvFile}
+            download
+            className="group relative font-sans text-[11px] tracking-widest uppercase px-6 py-4 border border-red/30 hover:border-red transition-colors duration-300 overflow-hidden"
+          >
+            <span className="relative z-10 text-red/70 group-hover:text-cream transition-colors duration-300 flex items-center gap-2">
+              <svg
+                width="12"
+                height="12"
+                viewBox="0 0 14 14"
+                fill="none"
+                className="inline-block"
+              >
+                <path
+                  d="M7 1v9m0 0L3.5 6.5M7 10l3.5-3.5M1 13h12"
+                  stroke="currentColor"
+                  strokeWidth="1.2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
+              {strings.sections.finance.cvDownload}
+            </span>
+            <span className="absolute inset-0 bg-red scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-300 ease-[cubic-bezier(0.22,1,0.36,1)]" />
+          </a>
+        </motion.div>
+
+        {/* Currently seeking */}
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-60px" }}
+          transition={{ duration: 0.6, delay: 0.3 }}
+          className="mt-20 max-w-2xl border-l-2 border-red pl-6"
+        >
+          <span className="font-sans text-[11px] tracking-[0.2em] uppercase text-red/60 block mb-3">
+            {strings.sections.finance.seekingLabel}
+          </span>
+          <p className="font-sans text-base leading-[1.7] text-black/60">
+            {strings.sections.finance.seeking}
+          </p>
+          <motion.a
+            href="https://www.linkedin.com/in/m%C3%A9tivier--robcis-cyprien/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 mt-5 font-sans text-[11px] tracking-widest uppercase text-black/40 hover:text-red transition-colors duration-300 group"
+            whileHover="hover"
+          >
+            {strings.sections.finance.linkedin}
+            <motion.span
+              className="inline-block"
+              variants={{ hover: { x: 4 } }}
+              transition={{ duration: 0.2, ease: [0.22, 1, 0.36, 1] }}
+            >
+              &rarr;
+            </motion.span>
+          </motion.a>
         </motion.div>
       </section>
 
