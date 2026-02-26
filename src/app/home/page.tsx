@@ -7,12 +7,14 @@ import { Locale, VisitorType } from "@/lib/translations";
 import { t } from "@/lib/translations";
 import { getVisitorType, getLocale } from "@/lib/store";
 import Navigation from "@/components/Navigation";
+import CvModal from "@/components/CvModal";
 
 export default function HomePage() {
   const router = useRouter();
   const [locale, setLocale] = useState<Locale>("en");
   const [visitorType, setVisitorType] = useState<VisitorType>("visitor");
   const [mounted, setMounted] = useState(false);
+  const [cvModalOpen, setCvModalOpen] = useState(false);
 
   useEffect(() => {
     setMounted(true);
@@ -32,7 +34,7 @@ export default function HomePage() {
   const strings = t(locale);
   const hero = strings.hero[visitorType];
 
-  const otherSections = ["finance", "creative", "photography", "projects", "contact"] as const;
+  const otherSections = ["creative", "photography", "projects", "contact"] as const;
 
   const aboutData = strings.about[visitorType];
 
@@ -162,6 +164,90 @@ export default function HomePage() {
         />
       </section>
 
+      {/* Finance — CV preview & download */}
+      <section
+        id="finance"
+        className="min-h-[60vh] border-t border-black/10 pl-16 md:pl-28 lg:pl-40 pr-8 py-24 relative"
+      >
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.6 }}
+        >
+          <div className="flex items-baseline gap-6 mb-16">
+            <span className="font-sans text-[11px] tracking-widest text-black/30 tabular-nums">
+              03
+            </span>
+            <h2 className="font-serif text-4xl md:text-5xl">
+              {strings.sections.finance.title}
+            </h2>
+          </div>
+
+          <div className="max-w-2xl">
+            <p className="font-sans text-black/40 text-base leading-relaxed mb-10">
+              {strings.sections.finance.placeholder}
+            </p>
+
+            <motion.div
+              initial={{ opacity: 0, y: 12 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-60px" }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+              className="flex flex-wrap gap-4"
+            >
+              <button
+                onClick={() => setCvModalOpen(true)}
+                className="group relative font-sans text-[11px] tracking-widest uppercase px-6 py-4 border border-black/20 hover:border-black transition-colors duration-300 overflow-hidden"
+              >
+                <span className="relative z-10 group-hover:text-cream transition-colors duration-300">
+                  {strings.sections.finance.cvPreview}
+                </span>
+                <span className="absolute inset-0 bg-black scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-300 ease-[cubic-bezier(0.22,1,0.36,1)]" />
+              </button>
+
+              <a
+                href={strings.sections.finance.cvFile}
+                download
+                className="group relative font-sans text-[11px] tracking-widest uppercase px-6 py-4 border border-red/30 hover:border-red transition-colors duration-300 overflow-hidden"
+              >
+                <span className="relative z-10 text-red/70 group-hover:text-cream transition-colors duration-300 flex items-center gap-2">
+                  <svg
+                    width="12"
+                    height="12"
+                    viewBox="0 0 14 14"
+                    fill="none"
+                    className="inline-block"
+                  >
+                    <path
+                      d="M7 1v9m0 0L3.5 6.5M7 10l3.5-3.5M1 13h12"
+                      stroke="currentColor"
+                      strokeWidth="1.2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                  </svg>
+                  {strings.sections.finance.cvDownload}
+                </span>
+                <span className="absolute inset-0 bg-red scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-300 ease-[cubic-bezier(0.22,1,0.36,1)]" />
+              </a>
+            </motion.div>
+
+            <div className="mt-12 flex gap-3">
+              <div className="w-16 h-16 bg-red/15" />
+              <div className="w-px h-16 bg-black/10" />
+            </div>
+          </div>
+        </motion.div>
+      </section>
+
+      <CvModal
+        isOpen={cvModalOpen}
+        onClose={() => setCvModalOpen(false)}
+        pdfUrl={strings.sections.finance.cvFile}
+        downloadLabel={strings.sections.finance.cvDownload}
+      />
+
       {/* Other Sections */}
       {otherSections.map((key, i) => (
         <section
@@ -177,7 +263,7 @@ export default function HomePage() {
           >
             <div className="flex items-baseline gap-6 mb-16">
               <span className="font-sans text-[11px] tracking-widest text-black/30 tabular-nums">
-                {String(i + 3).padStart(2, "0")}
+                {String(i + 4).padStart(2, "0")}
               </span>
               <h2 className="font-serif text-4xl md:text-5xl">
                 {strings.sections[key].title}

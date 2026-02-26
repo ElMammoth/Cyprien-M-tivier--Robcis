@@ -64,6 +64,9 @@ export const translations = {
       finance: {
         title: "Finance",
         placeholder: "Financial projects & experience — coming soon.",
+        cvPreview: "Preview CV",
+        cvDownload: "Download CV",
+        cvFile: "/cv/Resume_Cyprien_EN_26.pdf",
       },
       creative: {
         title: "Creative",
@@ -145,6 +148,9 @@ export const translations = {
       finance: {
         title: "Finance",
         placeholder: "Projets financiers — bientôt.",
+        cvPreview: "Aperçu CV",
+        cvDownload: "Télécharger CV",
+        cvFile: "/cv/Resume_Cyprien_FR_26.pdf",
       },
       creative: {
         title: "Créatif",
