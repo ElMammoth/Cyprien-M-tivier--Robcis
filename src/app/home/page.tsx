@@ -8,6 +8,9 @@ import { t } from "@/lib/translations";
 import { getVisitorType, getLocale } from "@/lib/store";
 import Navigation from "@/components/Navigation";
 import CvModal from "@/components/CvModal";
+import { creativeProjects } from "@/data/creative-projects";
+import Image from "next/image";
+import Link from "next/link";
 
 export default function HomePage() {
   const router = useRouter();
@@ -34,7 +37,7 @@ export default function HomePage() {
   const strings = t(locale);
   const hero = strings.hero[visitorType];
 
-  const otherSections = ["creative", "photography", "projects", "contact"] as const;
+  const otherSections = ["photography", "projects", "contact"] as const;
 
   const aboutData = strings.about[visitorType];
 
@@ -313,6 +316,90 @@ export default function HomePage() {
         downloadLabel={strings.sections.finance.cvDownload}
       />
 
+      {/* Creative — project grid */}
+      <section
+        id="creative"
+        className="border-t border-black/10 pl-16 md:pl-28 lg:pl-40 pr-8 py-24"
+      >
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.6 }}
+        >
+          <div className="flex items-baseline gap-6 mb-16">
+            <span className="font-sans text-[11px] tracking-widest text-black/30 tabular-nums">
+              04
+            </span>
+            <h2 className="font-serif text-4xl md:text-5xl">
+              {strings.sections.creative.title}
+            </h2>
+          </div>
+        </motion.div>
+
+        {/* Asymmetric project grid */}
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-8 max-w-5xl">
+          {creativeProjects.map((project, i) => {
+            const isFR = locale === "fr";
+            const title = isFR ? project.titleFR : project.title;
+            const tagline = isFR ? project.taglineFR : project.tagline;
+            // Asymmetric: first card takes 7 cols, second takes 5, alternating
+            const span = i % 2 === 0 ? "md:col-span-7" : "md:col-span-5";
+            // Offset: odd cards push down
+            const offset = i % 2 === 1 ? "md:mt-12" : "";
+
+            return (
+              <motion.div
+                key={project.slug}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-60px" }}
+                transition={{ duration: 0.5, delay: i * 0.1 }}
+                className={`${span} ${offset}`}
+              >
+                <Link
+                  href={`/creative/${project.slug}`}
+                  className="group block"
+                >
+                  {/* Thumbnail */}
+                  <div className="relative aspect-[4/3] bg-black/[0.03] overflow-hidden mb-5">
+                    <motion.div
+                      whileHover={{ scale: 1.03 }}
+                      transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+                      className="w-full h-full relative"
+                    >
+                      <Image
+                        src={project.thumbnail}
+                        alt={title}
+                        fill
+                        className="object-contain"
+                      />
+                    </motion.div>
+                    {/* Category tag */}
+                    <span className="absolute top-4 left-4 font-sans text-[10px] tracking-widest uppercase bg-cream/90 px-3 py-1.5 text-black/50">
+                      {project.category}
+                    </span>
+                  </div>
+
+                  {/* Text */}
+                  <h3 className="font-serif text-xl md:text-2xl group-hover:text-red transition-colors duration-300 mb-1">
+                    {title}
+                  </h3>
+                  <p className="font-sans text-sm text-black/40 leading-relaxed">
+                    {tagline}
+                  </p>
+
+                  {/* Arrow */}
+                  <span className="inline-block mt-3 font-sans text-[11px] tracking-widest uppercase text-black/20 group-hover:text-red transition-colors duration-300">
+                    {isFR ? "Voir" : "View"} &rarr;
+                  </span>
+                </Link>
+              </motion.div>
+            );
+          })}
+        </div>
+      </section>
+
       {/* Other Sections */}
       {otherSections.map((key, i) => (
         <section
@@ -328,7 +415,7 @@ export default function HomePage() {
           >
             <div className="flex items-baseline gap-6 mb-16">
               <span className="font-sans text-[11px] tracking-widest text-black/30 tabular-nums">
-                {String(i + 4).padStart(2, "0")}
+                {String(i + 5).padStart(2, "0")}
               </span>
               <h2 className="font-serif text-4xl md:text-5xl">
                 {strings.sections[key].title}
