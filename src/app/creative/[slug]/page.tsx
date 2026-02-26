@@ -40,20 +40,24 @@ export default function CreativeDetailPage() {
     <div className="min-h-screen bg-cream">
       <Navigation locale={locale} onLocaleChange={setLocale} />
 
-      {/* Hero image */}
+      {/* Hero image — full width, page bg shows through transparency */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.6 }}
-        className={`w-full h-[55vh] md:h-[70vh] relative overflow-hidden ${project.heroBg || "bg-black/[0.03]"}`}
+        className="w-full relative overflow-hidden pt-20 flex justify-center"
       >
-        <Image
-          src={heroSrc}
-          alt={title}
-          fill
-          className="object-contain"
-          priority
-        />
+        {/* ⬇️ Change max-h-[600px] to control the hero image height manually */}
+        <div className="w-full max-h-[600px] flex items-center justify-center">
+          <Image
+            src={heroSrc}
+            alt={title}
+            width={2400}
+            height={1350}
+            className="w-full h-auto max-h-[600px] object-contain"
+            priority
+          />
+        </div>
       </motion.div>
 
       {/* Content */}

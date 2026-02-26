@@ -362,7 +362,7 @@ export default function HomePage() {
                   className="group block"
                 >
                   {/* Thumbnail */}
-                  <div className="relative aspect-[4/3] bg-black/[0.03] overflow-hidden mb-5">
+                  <div className="relative aspect-[4/3] overflow-hidden mb-5">
                     <motion.div
                       whileHover={{ scale: 1.03 }}
                       transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
@@ -372,7 +372,7 @@ export default function HomePage() {
                         src={project.thumbnail}
                         alt={title}
                         fill
-                        className="object-contain"
+                        className="object-cover"
                       />
                     </motion.div>
                     {/* Category tag */}
