@@ -32,7 +32,9 @@ export default function HomePage() {
   const strings = t(locale);
   const hero = strings.hero[visitorType];
 
-  const sectionKeys = ["about", "finance", "creative", "photography", "projects", "contact"] as const;
+  const otherSections = ["finance", "creative", "photography", "projects", "contact"] as const;
+
+  const aboutData = strings.about[visitorType];
 
   return (
     <div className="min-h-screen bg-cream">
@@ -45,7 +47,6 @@ export default function HomePage() {
           animate={{ opacity: 1 }}
           transition={{ duration: 0.8, delay: 0.2 }}
         >
-          {/* Decorative number */}
           <motion.span
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -80,7 +81,6 @@ export default function HomePage() {
           </motion.p>
         </motion.div>
 
-        {/* Decorative accents */}
         <motion.div
           initial={{ scaleX: 0 }}
           animate={{ scaleX: 1 }}
@@ -95,8 +95,75 @@ export default function HomePage() {
         />
       </section>
 
-      {/* Sections */}
-      {sectionKeys.map((key, i) => (
+      {/* About — adaptive */}
+      <section
+        id="about"
+        className="min-h-[70vh] border-t border-black/10 pl-16 md:pl-28 lg:pl-40 pr-8 py-24 relative"
+      >
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+        >
+          <div className="flex items-baseline gap-6 mb-16">
+            <span className="font-sans text-[11px] tracking-widest text-black/30 tabular-nums">
+              02
+            </span>
+            <h2 className="font-serif text-4xl md:text-5xl">
+              {strings.about.title}
+            </h2>
+          </div>
+
+          <div className="max-w-2xl">
+            <motion.p
+              initial={{ opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-80px" }}
+              transition={{ duration: 0.6, delay: 0.15 }}
+              className="font-sans text-base md:text-lg leading-[1.75] text-black/70"
+            >
+              {aboutData.bio}
+            </motion.p>
+
+            {"extra" in aboutData && (
+              <motion.p
+                initial={{ opacity: 0, y: 16 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-80px" }}
+                transition={{ duration: 0.6, delay: 0.3 }}
+                className="mt-6 font-sans text-base md:text-lg leading-[1.75] text-red/80"
+              >
+                {aboutData.extra}
+              </motion.p>
+            )}
+
+            {/* Decorative accent */}
+            <motion.div
+              initial={{ scaleX: 0 }}
+              whileInView={{ scaleX: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
+              className="mt-12 flex items-center gap-4 origin-left"
+            >
+              <div className="w-16 h-px bg-red" />
+              <div className="w-2 h-2 bg-red rounded-full" />
+            </motion.div>
+          </div>
+        </motion.div>
+
+        {/* Offset decorative block */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, delay: 0.5 }}
+          className="absolute top-24 right-12 w-8 h-24 bg-orange/10 hidden lg:block"
+        />
+      </section>
+
+      {/* Other Sections */}
+      {otherSections.map((key, i) => (
         <section
           key={key}
           id={key}
@@ -110,7 +177,7 @@ export default function HomePage() {
           >
             <div className="flex items-baseline gap-6 mb-16">
               <span className="font-sans text-[11px] tracking-widest text-black/30 tabular-nums">
-                {String(i + 2).padStart(2, "0")}
+                {String(i + 3).padStart(2, "0")}
               </span>
               <h2 className="font-serif text-4xl md:text-5xl">
                 {strings.sections[key].title}
@@ -122,7 +189,6 @@ export default function HomePage() {
                 {strings.sections[key].placeholder}
               </p>
 
-              {/* Decorative block */}
               <div className="mt-12 flex gap-3">
                 <div
                   className="w-16 h-16"
