@@ -33,6 +33,8 @@ export default function CreativeDetailPage() {
   const isFR = locale === "fr";
   const title = isFR ? project.titleFR : project.title;
   const description = isFR ? project.descriptionFR : project.description;
+  const date = isFR ? (project.dateFR || project.date) : project.date;
+  const heroSrc = project.heroImage || project.thumbnail;
 
   return (
     <div className="min-h-screen bg-cream">
@@ -43,10 +45,10 @@ export default function CreativeDetailPage() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.6 }}
-        className="w-full h-[50vh] md:h-[65vh] relative bg-black/[0.03] overflow-hidden"
+        className={`w-full h-[55vh] md:h-[70vh] relative overflow-hidden ${project.heroBg || "bg-black/[0.03]"}`}
       >
         <Image
-          src={project.thumbnail}
+          src={heroSrc}
           alt={title}
           fill
           className="object-contain"
@@ -62,65 +64,100 @@ export default function CreativeDetailPage() {
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.4, delay: 0.2 }}
           onClick={() => router.push("/home#creative")}
-          className="font-sans text-[11px] tracking-widest uppercase text-black/30 hover:text-red transition-colors duration-300 mb-12 flex items-center gap-2"
+          className="font-sans text-[11px] tracking-widest uppercase text-black/30 hover:text-red transition-colors duration-300 mb-16 flex items-center gap-2"
         >
           &larr; {isFR ? "Retour" : "Back"}
         </motion.button>
 
-        {/* Title + category */}
+        {/* Title block */}
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
           className="mb-12"
         >
-          <span className="font-sans text-[11px] tracking-widest uppercase text-red/60 block mb-4">
-            {project.category}
-          </span>
-          <h1 className="font-serif text-4xl md:text-6xl lg:text-7xl font-normal leading-[0.95] max-w-3xl">
+          {/* Date — large serif */}
+          {date && (
+            <span className="font-serif text-lg md:text-xl text-black/30 block mb-4">
+              {date}
+            </span>
+          )}
+
+          <h1 className="font-serif text-4xl md:text-6xl lg:text-7xl font-normal leading-[0.95] max-w-3xl mb-6">
             {title}
           </h1>
+
+          {/* Category */}
+          <span className="font-sans text-[11px] tracking-widest uppercase text-red/60 block mb-5">
+            {project.category}
+          </span>
+
+          {/* Tags */}
+          {project.tags && project.tags.length > 0 && (
+            <div className="flex flex-wrap gap-2">
+              {project.tags.map((tag) => (
+                <span
+                  key={tag}
+                  className="font-sans text-[10px] tracking-widest uppercase border border-black/10 px-3 py-1.5 text-black/40"
+                >
+                  {tag}
+                </span>
+              ))}
+            </div>
+          )}
         </motion.div>
 
-        {/* Description */}
-        <motion.p
+        {/* Description — supports multiline via \n */}
+        <motion.div
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.5 }}
-          className="font-sans text-base md:text-lg leading-[1.8] text-black/60 max-w-2xl mb-20"
+          className="max-w-2xl mb-20"
         >
-          {description}
-        </motion.p>
+          {description.split("\n\n").map((paragraph, i) => (
+            <motion.p
+              key={i}
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.4, delay: 0.5 + i * 0.1 }}
+              className="font-sans text-base md:text-lg leading-[1.8] text-black/60 mb-6 last:mb-0"
+            >
+              {paragraph}
+            </motion.p>
+          ))}
+        </motion.div>
 
-        {/* Image gallery — asymmetric grid */}
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-6 max-w-5xl">
-          {project.images.map((src, i) => {
-            const spans =
-              i === 0
-                ? "md:col-span-8"
-                : i === 1
-                ? "md:col-span-4"
-                : "md:col-span-6 md:col-start-4";
+        {/* Image gallery — only if images exist */}
+        {project.images.length > 0 && (
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-6 max-w-5xl">
+            {project.images.map((src, i) => {
+              const spans =
+                i === 0
+                  ? "md:col-span-8"
+                  : i === 1
+                  ? "md:col-span-4"
+                  : "md:col-span-6 md:col-start-4";
 
-            return (
-              <motion.div
-                key={src}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-60px" }}
-                transition={{ duration: 0.5, delay: i * 0.1 }}
-                className={`relative aspect-[4/3] bg-black/[0.03] overflow-hidden ${spans}`}
-              >
-                <Image
-                  src={src}
-                  alt={`${title} — ${i + 1}`}
-                  fill
-                  className="object-contain"
-                />
-              </motion.div>
-            );
-          })}
-        </div>
+              return (
+                <motion.div
+                  key={src}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-60px" }}
+                  transition={{ duration: 0.5, delay: i * 0.1 }}
+                  className={`relative aspect-[4/3] bg-black/[0.03] overflow-hidden ${spans}`}
+                >
+                  <Image
+                    src={src}
+                    alt={`${title} — ${i + 1}`}
+                    fill
+                    className="object-contain"
+                  />
+                </motion.div>
+              );
+            })}
+          </div>
+        )}
 
         {/* Bottom back link */}
         <motion.div
