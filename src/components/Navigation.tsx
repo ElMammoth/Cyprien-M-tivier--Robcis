@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { usePathname, useRouter } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { Locale } from "@/lib/translations";
 import { t } from "@/lib/translations";
@@ -13,7 +14,10 @@ interface NavigationProps {
 
 export default function Navigation({ locale, onLocaleChange }: NavigationProps) {
   const [menuOpen, setMenuOpen] = useState(false);
+  const pathname = usePathname();
+  const router = useRouter();
   const strings = t(locale);
+  const isHome = pathname === "/home";
 
   function toggleLocale() {
     const next = locale === "en" ? "fr" : "en";
@@ -22,13 +26,23 @@ export default function Navigation({ locale, onLocaleChange }: NavigationProps) 
   }
 
   const navItems = [
-    { key: "about", label: strings.nav.about, href: "#about" },
-    { key: "finance", label: strings.nav.finance, href: "#finance" },
-    { key: "creative", label: strings.nav.creative, href: "#creative" },
-    { key: "photography", label: strings.nav.photography, href: "#photography" },
-    { key: "projects", label: strings.nav.projects, href: "#projects" },
-    { key: "contact", label: strings.nav.contact, href: "#contact" },
+    { key: "about", label: strings.nav.about },
+    { key: "finance", label: strings.nav.finance },
+    { key: "creative", label: strings.nav.creative },
+    { key: "photography", label: strings.nav.photography },
+    { key: "projects", label: strings.nav.projects },
+    { key: "contact", label: strings.nav.contact },
   ];
+
+  function handleNavClick(sectionKey: string) {
+    setMenuOpen(false);
+    if (isHome) {
+      const el = document.getElementById(sectionKey);
+      if (el) el.scrollIntoView({ behavior: "smooth" });
+    } else {
+      router.push(`/home#${sectionKey}`);
+    }
+  }
 
   return (
     <>
@@ -68,18 +82,17 @@ export default function Navigation({ locale, onLocaleChange }: NavigationProps) 
           >
             <div className="w-full pb-16 pl-16 md:pl-28 lg:pl-40 pr-8">
               {navItems.map((item, i) => (
-                <motion.a
+                <motion.button
                   key={item.key}
-                  href={item.href}
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -10 }}
                   transition={{ delay: 0.1 + i * 0.05, duration: 0.4 }}
-                  onClick={() => setMenuOpen(false)}
-                  className="block font-serif text-4xl md:text-6xl text-cream/70 hover:text-cream py-2 md:py-3 transition-colors duration-200"
+                  onClick={() => handleNavClick(item.key)}
+                  className="block font-serif text-4xl md:text-6xl text-cream/70 hover:text-cream py-2 md:py-3 transition-colors duration-200 text-left"
                 >
                   {item.label}
-                </motion.a>
+                </motion.button>
               ))}
 
               <motion.div

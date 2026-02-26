@@ -1,3 +1,22 @@
+export interface BeforeAfter {
+  before: string;
+  after: string;
+  labelBefore?: string;
+  labelAfter?: string;
+}
+
+export interface LogoVariation {
+  src: string;
+  label: string;
+  labelFR?: string;
+}
+
+export interface PdfEmbed {
+  src: string;
+  titleEN: string;
+  titleFR: string;
+}
+
 export interface CreativeProject {
   slug: string;
   title: string;
@@ -14,6 +33,16 @@ export interface CreativeProject {
   description: string;
   descriptionFR: string;
   images: string[];
+  beforeAfter?: BeforeAfter;
+  logoVariations?: {
+    titleEN: string;
+    titleFR: string;
+    items: LogoVariation[];
+  };
+  pdfEmbed?: PdfEmbed;
+  detailText?: string;
+  detailTextFR?: string;
+  websiteUrl?: string;
 }
 
 export const creativeProjects: CreativeProject[] = [
@@ -37,22 +66,59 @@ export const creativeProjects: CreativeProject[] = [
     images: [],
   },
   {
-    slug: "branding-01",
-    title: "Branding Project",
-    titleFR: "Projet de Branding",
-    tagline: "Visual identity for a contemporary brand",
-    taglineFR: "Identit\u00E9 visuelle pour une marque contemporaine",
+    slug: "elljomi-logo-redesign",
+    title: "Elljomi \u2014 Logo Redesign",
+    titleFR: "Elljomi \u2014 Refonte du Logo",
+    tagline: "Modernizing a Swiss catering brand",
+    taglineFR: "Moderniser l\u2019identit\u00E9 d\u2019un traiteur suisse",
     category: "Branding",
-    thumbnail: "/placeholder-branding.svg",
+    tags: ["Illustrator", "Brand Identity", "Logo Design"],
+    date: "2024",
+    dateFR: "2024",
+    thumbnail: "/creative/elljomi/elljomi-logo-after-white.png",
+    heroBg: "",
+    websiteUrl: "https://elljomi.ch",
     description:
-      "A complete visual identity system built from the ground up, logo, typography, color palette, and brand guidelines. The approach was rooted in minimalism with sharp geometric forms and a restrained color language. Every element was designed to feel deliberate and uncompromising.",
+      "Elljomi is a Swiss catering company whose logo felt dated and visually heavy. The brief was simple: modernize it while keeping the brand\u2019s identity intact. I kept the circular structure and the core elements \u2014 the chef\u2019s hat, the wordmark, the stars \u2014 but stripped everything back. Lighter strokes, cleaner typography, more breathing room. The result is a logo that works on both light and dark backgrounds, scales properly at any size, and feels premium without losing its warmth. Delivered with a full brand guidelines document.",
     descriptionFR:
-      "Un syst\u00E8me d\u2019identit\u00E9 visuelle complet construit de z\u00E9ro, logo, typographie, palette de couleurs et charte graphique. L\u2019approche \u00E9tait enracin\u00E9e dans le minimalisme avec des formes g\u00E9om\u00E9triques nettes et un langage chromatique sobre. Chaque \u00E9l\u00E9ment a \u00E9t\u00E9 con\u00E7u pour para\u00EEtre d\u00E9lib\u00E9r\u00E9 et sans compromis.",
-    images: [
-      "/placeholder-branding-1.svg",
-      "/placeholder-branding-2.svg",
-      "/placeholder-branding-3.svg",
-    ],
+      "Elljomi est un traiteur suisse dont le logo paraissait dat\u00E9 et visuellement trop charg\u00E9. La mission\u00A0: le moderniser tout en pr\u00E9servant l\u2019identit\u00E9 de la marque. J\u2019ai conserv\u00E9 la structure circulaire et les \u00E9l\u00E9ments cl\u00E9s \u2014 la toque, le wordmark, les \u00E9toiles \u2014 mais j\u2019ai tout \u00E9pur\u00E9. Traits plus fins, typographie plus claire, plus d\u2019espace. Livr\u00E9 avec un document de brand guidelines complet.",
+    detailText:
+      "The original logo was a raster image \u2014 pixelated at large sizes and impossible to scale cleanly. The first step was to fully vectorize it in Illustrator, rebuilding every element from scratch as clean vector paths.\n\nBeyond vectorization, I redesigned the details while keeping the original DNA intact. The strokes are cleaner and more consistent. The chef\u2019s hat is now better integrated into the composition, sitting more naturally above the wordmark. \u201CCatering\u201D moved to the right, the cutlery icon shifted left \u2014 creating better visual balance. The decorative swipe line underneath was removed entirely, as it hurt readability. The three stars went from white to gold, adding a touch of warmth and premium feel.",
+    detailTextFR:
+      "Le logo original \u00E9tait une image matricielle \u2014 pixelis\u00E9e \u00E0 grande taille et impossible \u00E0 agrandir proprement. La premi\u00E8re \u00E9tape a \u00E9t\u00E9 de le vectoriser enti\u00E8rement dans Illustrator, en reconstruisant chaque \u00E9l\u00E9ment en trac\u00E9s vectoriels propres.\n\nAu-del\u00E0 de la vectorisation, j\u2019ai redesign\u00E9 les d\u00E9tails tout en conservant l\u2019ADN original. Les traits sont plus nets et coh\u00E9rents. La toque est mieux int\u00E9gr\u00E9e dans la composition, plac\u00E9e plus naturellement au-dessus du wordmark. \u00ABCatering\u00BB a \u00E9t\u00E9 d\u00E9plac\u00E9 \u00E0 droite, les couverts \u00E0 gauche \u2014 pour un meilleur \u00E9quilibre visuel. La ligne d\u00E9corative en bas a \u00E9t\u00E9 supprim\u00E9e, elle nuisait \u00E0 la lisibilit\u00E9. Les trois \u00E9toiles sont pass\u00E9es du blanc au jaune dor\u00E9, apportant chaleur et \u00E9l\u00E9gance.",
+    images: [],
+    beforeAfter: {
+      before: "/creative/elljomi/elljomi-logo-before.png",
+      after: "/creative/elljomi/elljomi-logo-after-white.png",
+      labelBefore: "BEFORE",
+      labelAfter: "AFTER",
+    },
+    logoVariations: {
+      titleEN: "Logo Variations",
+      titleFR: "Variations du logo",
+      items: [
+        {
+          src: "/creative/elljomi/elljomi-logo-after-white.png",
+          label: "Primary \u2014 Dark Background",
+          labelFR: "Principal \u2014 Fond sombre",
+        },
+        {
+          src: "/creative/elljomi/elljomi-logo-text.png",
+          label: "Text Version",
+          labelFR: "Version texte",
+        },
+        {
+          src: "/creative/elljomi/elljomi-logo-mark.png",
+          label: "Logo Mark",
+          labelFR: "Symbole",
+        },
+      ],
+    },
+    pdfEmbed: {
+      src: "/creative/elljomi/elljomi-guidelines.pdf",
+      titleEN: "Brand Guidelines",
+      titleFR: "Charte graphique",
+    },
   },
   {
     slug: "illustration-01",

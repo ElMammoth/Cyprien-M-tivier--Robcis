@@ -199,9 +199,7 @@ export default function HomePage() {
               className="relative pl-8 md:pl-12 pb-12 last:pb-0 group"
             >
               {/* Vertical line */}
-              {i < strings.sections.finance.experience.length - 1 && (
-                <div className="absolute left-0 top-2 bottom-0 w-px bg-black/10" />
-              )}
+              <div className="absolute left-0 top-2 bottom-0 w-px bg-black/10" />
 
               {/* Dot marker */}
               <div className="absolute left-0 top-[7px] w-[7px] h-[7px] -translate-x-[3px] bg-black/20 group-hover:bg-red transition-colors duration-300" />
@@ -228,6 +226,16 @@ export default function HomePage() {
               </p>
             </motion.div>
           ))}
+
+          {/* Continuation hint — implies earlier history */}
+          <div className="relative pl-8 pt-4 pb-2">
+            <div className="absolute left-0 top-0 w-px h-4 bg-black/10" />
+            <div className="absolute left-0 top-4 flex flex-col gap-[5px] -translate-x-[1.5px]">
+              <span className="block w-[4px] h-[4px] rounded-full bg-black/15" />
+              <span className="block w-[4px] h-[4px] rounded-full bg-black/10" />
+              <span className="block w-[4px] h-[4px] rounded-full bg-black/[0.06]" />
+            </div>
+          </div>
         </div>
 
         {/* CV buttons */}
