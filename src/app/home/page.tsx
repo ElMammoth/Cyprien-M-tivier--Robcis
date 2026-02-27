@@ -11,6 +11,7 @@ import CvModal from "@/components/CvModal";
 import { creativeProjects } from "@/data/creative-projects";
 import photos from "@/data/photos.json";
 import FilmStrip from "@/components/FilmStrip";
+import ContactForm from "@/components/ContactForm";
 import Link from "next/link";
 
 export default function HomePage() {
@@ -46,8 +47,6 @@ export default function HomePage() {
 
   const strings = t(locale);
   const hero = strings.hero[visitorType];
-
-  const otherSections = ["contact"] as const;
 
   const aboutData = strings.about[visitorType];
 
@@ -452,49 +451,127 @@ export default function HomePage() {
         </motion.div>
       </section>
 
-      {/* Other Sections */}
-      {otherSections.map((key, i) => (
-        <section
-          key={key}
-          id={key}
-          className="min-h-[60vh] border-t border-black/10 pl-16 md:pl-28 lg:pl-40 pr-8 py-24"
-        >
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
+      {/* Contact */}
+      <section
+        id="contact"
+        className="border-t border-black/10 pl-16 md:pl-28 lg:pl-40 pr-8 py-24"
+      >
+        {/* Section number + animated title */}
+        <div className="mb-6">
+          <motion.span
+            initial={{ opacity: 0, y: 12 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.6 }}
+            transition={{ duration: 0.4 }}
+            className="block font-sans text-label tracking-widest text-black/30 tabular-nums mb-6"
           >
-            <div className="flex items-baseline gap-6 mb-16">
-              <span className="font-sans text-label tracking-widest text-black/30 tabular-nums">
-                {String(i + 6).padStart(2, "0")}
+            06
+          </motion.span>
+
+          <h2 className="font-serif text-4xl md:text-6xl lg:text-7xl font-normal leading-heading overflow-hidden">
+            {(locale === "fr" ? "Parlons ensemble." : "Let\u2019s talk.")
+              .split(" ")
+              .map((word, i) => (
+                <motion.span
+                  key={i}
+                  initial={{ opacity: 0, y: 40 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-80px" }}
+                  transition={{
+                    duration: 0.6,
+                    delay: 0.1 + i * 0.1,
+                    ease: [0.22, 1, 0.36, 1],
+                  }}
+                  className="inline-block mr-[0.3em]"
+                >
+                  {word}
+                </motion.span>
+              ))}
+          </h2>
+        </div>
+
+        {/* Availability line */}
+        <motion.p
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true, margin: "-60px" }}
+          transition={{ duration: 0.5, delay: 0.4 }}
+          className="font-sans text-caption tracking-wider text-black/30 mb-16 max-w-lg"
+        >
+          {locale === "fr"
+            ? "Disponible pour un stage de 4 mois — Paris \u00B7 Z\u00FCrich \u00B7 Montr\u00E9al"
+            : "Currently seeking a 4-month internship — Paris \u00B7 Z\u00FCrich \u00B7 Montr\u00E9al"}
+        </motion.p>
+
+        {/* Form */}
+        <ContactForm locale={locale} />
+
+        {/* Info block */}
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-40px" }}
+          transition={{ duration: 0.5, delay: 0.5 }}
+          className="mt-20 pt-12 border-t border-black/10 max-w-[680px]"
+        >
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
+            <div>
+              <span className="font-sans text-micro tracking-ultra uppercase text-black/30 block mb-3">
+                {locale === "fr" ? "Localisation" : "Location"}
               </span>
-              <h2 className="font-serif text-4xl md:text-5xl">
-                {strings.sections[key].title}
-              </h2>
+              <p className="font-sans text-sm text-black/60">
+                Paris, near Parc Monceau
+              </p>
             </div>
 
-            <div className="max-w-2xl">
-              <p className="font-sans text-black/40 text-base leading-relaxed">
-                {strings.sections[key].placeholder}
-              </p>
-
-              <div className="mt-12 flex gap-3">
-                <div
-                  className={`w-16 h-16 ${
-                    i % 3 === 0
-                      ? "bg-red opacity-15"
-                      : i % 3 === 1
-                      ? "bg-orange opacity-15"
-                      : "bg-black opacity-[0.08]"
-                  }`}
-                />
-                <div className="w-px h-16 bg-black/10" />
+            <div>
+              <span className="font-sans text-micro tracking-ultra uppercase text-black/30 block mb-3">
+                {locale === "fr" ? "Liens" : "Links"}
+              </span>
+              <div className="flex flex-col gap-2">
+                <a
+                  href="mailto:cyprien.music@icloud.com"
+                  className="font-sans text-sm text-black/50 hover:text-red transition-colors duration-300"
+                >
+                  cyprien.music@icloud.com
+                </a>
+                <motion.a
+                  href="https://www.linkedin.com/in/m%C3%A9tivier--robcis-cyprien/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1.5 font-sans text-sm text-black/50 hover:text-red transition-colors duration-300"
+                  whileHover="hover"
+                >
+                  LinkedIn
+                  <motion.span
+                    className="inline-block text-[10px]"
+                    variants={{ hover: { x: 2, y: -2 } }}
+                    transition={{ duration: 0.2 }}
+                  >
+                    &nearr;
+                  </motion.span>
+                </motion.a>
+                <motion.a
+                  href="https://www.instagram.com/cymusic_/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1.5 font-sans text-sm text-black/50 hover:text-red transition-colors duration-300"
+                  whileHover="hover"
+                >
+                  Instagram
+                  <motion.span
+                    className="inline-block text-[10px]"
+                    variants={{ hover: { x: 2, y: -2 } }}
+                    transition={{ duration: 0.2 }}
+                  >
+                    &nearr;
+                  </motion.span>
+                </motion.a>
               </div>
             </div>
-          </motion.div>
-        </section>
-      ))}
+          </div>
+        </motion.div>
+      </section>
 
       {/* Footer */}
       <footer className="border-t border-black/10 pl-16 md:pl-28 lg:pl-40 pr-8 py-12">
