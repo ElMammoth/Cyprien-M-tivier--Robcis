@@ -1,5 +1,5 @@
 /**
- * Extract EXIF data from all images in /public/XT5/
+ * Extract EXIF data + blur placeholders from all images in /public/XT5/
  * Run: node scripts/extract-exif.mjs
  * Outputs: src/data/photos.json
  */
@@ -8,7 +8,7 @@ import fs from "fs";
 import path from "path";
 import { fileURLToPath } from "url";
 import exifr from "exifr";
-import { createRequire } from "module";
+import sharp from "sharp";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const root = path.resolve(__dirname, "..");
@@ -24,35 +24,16 @@ function formatShutter(exposureTime) {
   return `1/${denominator}s`;
 }
 
-async function getImageDimensions(filePath) {
-  // Read first bytes to detect dimensions from file header
-  const buf = fs.readFileSync(filePath);
-  const ext = path.extname(filePath).toLowerCase();
-
-  if (ext === ".jpg" || ext === ".jpeg") {
-    // Parse JPEG SOF markers for dimensions
-    let offset = 2;
-    while (offset < buf.length) {
-      if (buf[offset] !== 0xff) break;
-      const marker = buf[offset + 1];
-      const length = buf.readUInt16BE(offset + 2);
-      // SOF markers: 0xC0-0xCF except 0xC4, 0xC8, 0xCC
-      if (marker >= 0xc0 && marker <= 0xcf && marker !== 0xc4 && marker !== 0xc8 && marker !== 0xcc) {
-        const height = buf.readUInt16BE(offset + 5);
-        const width = buf.readUInt16BE(offset + 7);
-        return { width, height };
-      }
-      offset += 2 + length;
-    }
+async function generateBlurDataURL(filePath) {
+  try {
+    const buffer = await sharp(filePath)
+      .resize(16, undefined, { fit: "inside" })
+      .jpeg({ quality: 40 })
+      .toBuffer();
+    return `data:image/jpeg;base64,${buffer.toString("base64")}`;
+  } catch {
+    return null;
   }
-
-  if (ext === ".png") {
-    const width = buf.readUInt32BE(16);
-    const height = buf.readUInt32BE(20);
-    return { width, height };
-  }
-
-  return { width: 0, height: 0 };
 }
 
 async function main() {
@@ -75,7 +56,7 @@ async function main() {
     return;
   }
 
-  console.log(`Found ${files.length} images. Extracting EXIF…`);
+  console.log(`Found ${files.length} images. Extracting EXIF + blur placeholders…`);
 
   const photos = [];
 
@@ -85,21 +66,19 @@ async function main() {
 
     try {
       exif = await exifr.parse(filePath, {
-        pick: ["FocalLength", "FocalLengthIn35mmFormat", "FNumber", "ExposureTime", "ISO", "ImageWidth", "ImageHeight", "ExifImageWidth", "ExifImageHeight", "Orientation"],
+        pick: ["FocalLength", "FocalLengthIn35mmFormat", "FNumber", "ExposureTime", "ISO", "Orientation"],
       });
     } catch {
       // No EXIF data
     }
 
-    const dims = await getImageDimensions(filePath);
-    const width = exif?.ExifImageWidth || exif?.ImageWidth || dims.width;
-    const height = exif?.ExifImageHeight || exif?.ImageHeight || dims.height;
+    // Use sharp for reliable dimensions (handles orientation automatically)
+    const metadata = await sharp(filePath).metadata();
+    const finalWidth = metadata.width || 0;
+    const finalHeight = metadata.height || 0;
 
-    // Handle orientation — swap dimensions for rotated images
-    const orientation = exif?.Orientation || 1;
-    const isRotated = orientation >= 5 && orientation <= 8;
-    const finalWidth = isRotated ? height : width;
-    const finalHeight = isRotated ? width : height;
+    // Generate blur placeholder
+    const blurDataURL = await generateBlurDataURL(filePath);
 
     photos.push({
       filename: file,
@@ -114,6 +93,7 @@ async function main() {
       aperture: exif?.FNumber ? `f/${exif.FNumber}` : null,
       shutterSpeed: formatShutter(exif?.ExposureTime),
       iso: exif?.ISO ? `ISO ${exif.ISO}` : null,
+      blurDataURL,
     });
 
     console.log(`  ✓ ${file} (${finalWidth}×${finalHeight})`);

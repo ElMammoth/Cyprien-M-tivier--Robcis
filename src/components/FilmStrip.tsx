@@ -13,6 +13,7 @@ interface Photo {
   aperture: string | null;
   shutterSpeed: string | null;
   iso: string | null;
+  blurDataURL?: string;
 }
 
 interface FilmStripProps {
@@ -89,6 +90,28 @@ export default function FilmStrip({ photos }: FilmStripProps) {
     };
   }, [lightboxIndex, photos.length]);
 
+  // Wheel scroll hijacking — vertical wheel → horizontal scroll on desktop
+  useEffect(() => {
+    const el = scrollRef.current;
+    if (!el) return;
+    function handleWheel(e: WheelEvent) {
+      // Only hijack if there's meaningful vertical delta and the strip is scrollable
+      if (Math.abs(e.deltaY) < 5) return;
+      const maxScroll = el!.scrollWidth - el!.clientWidth;
+      if (maxScroll <= 0) return;
+
+      // Don't hijack if already at the edge and scrolling further in that direction
+      const atStart = el!.scrollLeft <= 0 && e.deltaY < 0;
+      const atEnd = el!.scrollLeft >= maxScroll - 1 && e.deltaY > 0;
+      if (atStart || atEnd) return;
+
+      e.preventDefault();
+      el!.scrollLeft += e.deltaY;
+    }
+    el.addEventListener("wheel", handleWheel, { passive: false });
+    return () => el.removeEventListener("wheel", handleWheel);
+  }, []);
+
   if (photos.length === 0) return null;
 
   return (
@@ -147,6 +170,8 @@ export default function FilmStrip({ photos }: FilmStripProps) {
                       className="object-cover pointer-events-none"
                       sizes={`${Math.round(320 * aspectRatio)}px`}
                       draggable={false}
+                      placeholder={photo.blurDataURL ? "blur" : "empty"}
+                      blurDataURL={photo.blurDataURL}
                     />
                   </div>
                 </button>
@@ -216,6 +241,8 @@ export default function FilmStrip({ photos }: FilmStripProps) {
                   height={photos[lightboxIndex].height}
                   className="max-w-[90vw] max-h-[80vh] w-auto h-auto object-contain"
                   priority
+                  placeholder={photos[lightboxIndex].blurDataURL ? "blur" : "empty"}
+                  blurDataURL={photos[lightboxIndex].blurDataURL}
                 />
               </div>
 
