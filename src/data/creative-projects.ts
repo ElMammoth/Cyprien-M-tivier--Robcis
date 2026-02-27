@@ -99,8 +99,8 @@ export const creativeProjects: CreativeProject[] = [
       items: [
         {
           src: "/creative/elljomi/elljomi-logo-after-white.png",
-          label: "Primary \u2014 Dark Background",
-          labelFR: "Principal \u2014 Fond sombre",
+          label: "Primary",
+          labelFR: "Principal",
         },
         {
           src: "/creative/elljomi/elljomi-logo-text.png",

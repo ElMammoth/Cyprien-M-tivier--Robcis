@@ -22,7 +22,7 @@ export default function CreativeDetailPage() {
     const slug = params.slug as string;
     const found = getProjectBySlug(slug);
     if (!found) {
-      router.replace("/home#creative");
+      router.replace("/home#projects");
       return;
     }
     setProject(found);
@@ -69,7 +69,7 @@ export default function CreativeDetailPage() {
           initial={{ opacity: 0, x: -12 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.4, delay: 0.2 }}
-          onClick={() => router.push("/home#creative")}
+          onClick={() => router.push("/home#projects")}
           className="font-sans text-label tracking-widest uppercase text-black/30 hover:text-red transition-colors duration-300 mb-16 flex items-center gap-2"
         >
           &larr; {isFR ? "Retour" : "Back"}
@@ -339,7 +339,7 @@ export default function CreativeDetailPage() {
           className="mt-20 pt-8 border-t border-black/10"
         >
           <button
-            onClick={() => router.push("/home#creative")}
+            onClick={() => router.push("/home#projects")}
             className="font-sans text-label tracking-widest uppercase text-black/30 hover:text-red transition-colors duration-300 flex items-center gap-2"
           >
             &larr; {isFR ? "Tous les projets" : "All projects"}

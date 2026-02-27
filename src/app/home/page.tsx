@@ -29,6 +29,15 @@ export default function HomePage() {
       return;
     }
     setVisitorType(savedType);
+
+    // Scroll to hash section after page mount (e.g. navigating from /creative/slug → /home#projects)
+    const hash = window.location.hash.replace("#", "");
+    if (hash) {
+      setTimeout(() => {
+        const el = document.getElementById(hash);
+        if (el) el.scrollIntoView({ behavior: "smooth" });
+      }, 100);
+    }
   }, [router]);
 
   if (!mounted) return null;
@@ -36,7 +45,7 @@ export default function HomePage() {
   const strings = t(locale);
   const hero = strings.hero[visitorType];
 
-  const otherSections = ["photography", "projects", "contact"] as const;
+  const otherSections = ["photography", "contact"] as const;
 
   const aboutData = strings.about[visitorType];
 
@@ -166,9 +175,9 @@ export default function HomePage() {
         />
       </section>
 
-      {/* Finance — timeline, CV, seeking */}
+      {/* Background — timeline, CV, seeking */}
       <section
-        id="finance"
+        id="background"
         className="border-t border-black/10 pl-16 md:pl-28 lg:pl-40 pr-8 py-24 relative"
       >
         <motion.div
@@ -182,14 +191,14 @@ export default function HomePage() {
               03
             </span>
             <h2 className="font-serif text-4xl md:text-5xl">
-              {strings.sections.finance.title}
+              {strings.sections.background.title}
             </h2>
           </div>
         </motion.div>
 
         {/* Experience timeline */}
         <div className="max-w-3xl">
-          {strings.sections.finance.experience.map((exp, i) => (
+          {strings.sections.background.experience.map((exp, i) => (
             <motion.div
               key={exp.company}
               initial={{ opacity: 0, y: 24 }}
@@ -251,13 +260,13 @@ export default function HomePage() {
             className="group relative font-sans text-label tracking-widest uppercase px-6 py-4 border border-black/20 hover:border-black transition-colors duration-300 overflow-hidden"
           >
             <span className="relative z-10 group-hover:text-cream transition-colors duration-300">
-              {strings.sections.finance.cvPreview}
+              {strings.sections.background.cvPreview}
             </span>
             <span className="absolute inset-0 bg-black scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-300 ease-[cubic-bezier(0.22,1,0.36,1)]" />
           </button>
 
           <a
-            href={strings.sections.finance.cvFile}
+            href={strings.sections.background.cvFile}
             download
             className="group relative font-sans text-label tracking-widest uppercase px-6 py-4 border border-red/30 hover:border-red transition-colors duration-300 overflow-hidden"
           >
@@ -277,7 +286,7 @@ export default function HomePage() {
                   strokeLinejoin="round"
                 />
               </svg>
-              {strings.sections.finance.cvDownload}
+              {strings.sections.background.cvDownload}
             </span>
             <span className="absolute inset-0 bg-red scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-300 ease-[cubic-bezier(0.22,1,0.36,1)]" />
           </a>
@@ -292,10 +301,10 @@ export default function HomePage() {
           className="mt-20 max-w-2xl border-l-2 border-red pl-6"
         >
           <span className="font-sans text-label tracking-ultra uppercase text-red/60 block mb-3">
-            {strings.sections.finance.seekingLabel}
+            {strings.sections.background.seekingLabel}
           </span>
           <p className="font-sans text-base leading-body text-black/60">
-            {strings.sections.finance.seeking}
+            {strings.sections.background.seeking}
           </p>
           <motion.a
             href="https://www.linkedin.com/in/m%C3%A9tivier--robcis-cyprien/"
@@ -304,7 +313,7 @@ export default function HomePage() {
             className="inline-flex items-center gap-2 mt-5 font-sans text-label tracking-widest uppercase text-black/40 hover:text-red transition-colors duration-300 group"
             whileHover="hover"
           >
-            {strings.sections.finance.linkedin}
+            {strings.sections.background.linkedin}
             <motion.span
               className="inline-block"
               variants={{ hover: { x: 4 } }}
@@ -319,13 +328,13 @@ export default function HomePage() {
       <CvModal
         isOpen={cvModalOpen}
         onClose={() => setCvModalOpen(false)}
-        pdfUrl={strings.sections.finance.cvFile}
-        downloadLabel={strings.sections.finance.cvDownload}
+        pdfUrl={strings.sections.background.cvFile}
+        downloadLabel={strings.sections.background.cvDownload}
       />
 
-      {/* Creative — project grid */}
+      {/* Projects — project grid */}
       <section
-        id="creative"
+        id="projects"
         className="border-t border-black/10 pl-16 md:pl-28 lg:pl-40 pr-8 py-24"
       >
         <motion.div
@@ -339,7 +348,7 @@ export default function HomePage() {
               04
             </span>
             <h2 className="font-serif text-4xl md:text-5xl">
-              {strings.sections.creative.title}
+              {strings.sections.projects.title}
             </h2>
           </div>
         </motion.div>

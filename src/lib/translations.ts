@@ -29,15 +29,14 @@ export const translations = {
       },
       visitor: {
         headline: "Cyprien Métivier-Robcis",
-        sub: "Portfolio — Finance, Creative, Photography.",
+        sub: "Portfolio — Background, Projects, Photography.",
       },
     },
     nav: {
       about: "About",
-      finance: "Finance",
-      creative: "Creative",
-      photography: "Photography",
+      background: "Background",
       projects: "Projects",
+      photography: "Photography",
       contact: "Contact",
     },
     about: {
@@ -61,8 +60,8 @@ export const translations = {
         title: "About",
         placeholder: "",
       },
-      finance: {
-        title: "Finance",
+      background: {
+        title: "Background",
         placeholder: "Financial projects & experience — coming soon.",
         cvPreview: "Preview CV",
         cvDownload: "Download CV",
@@ -94,17 +93,13 @@ export const translations = {
         seekingLabel: "Currently seeking",
         linkedin: "Connect on LinkedIn",
       },
-      creative: {
-        title: "Creative",
+      projects: {
+        title: "Projects",
         placeholder: "Creative work & direction — coming soon.",
       },
       photography: {
         title: "Photography",
         placeholder: "Visual stories — coming soon.",
-      },
-      projects: {
-        title: "Projects",
-        placeholder: "Selected projects — coming soon.",
       },
       contact: {
         title: "Contact",
@@ -139,15 +134,14 @@ export const translations = {
       },
       visitor: {
         headline: "Cyprien Métivier-Robcis",
-        sub: "Portfolio — Finance, Créatif, Photographie.",
+        sub: "Portfolio — Parcours, Projets, Photographie.",
       },
     },
     nav: {
       about: "À propos",
-      finance: "Finance",
-      creative: "Créatif",
-      photography: "Photographie",
+      background: "Parcours",
       projects: "Projets",
+      photography: "Photographie",
       contact: "Contact",
     },
     about: {
@@ -171,8 +165,8 @@ export const translations = {
         title: "À propos",
         placeholder: "",
       },
-      finance: {
-        title: "Finance",
+      background: {
+        title: "Parcours",
         placeholder: "Projets financiers — bientôt.",
         cvPreview: "Aperçu CV",
         cvDownload: "Télécharger CV",
@@ -204,17 +198,13 @@ export const translations = {
         seekingLabel: "Actuellement",
         linkedin: "Me rejoindre sur LinkedIn",
       },
-      creative: {
-        title: "Créatif",
+      projects: {
+        title: "Projets",
         placeholder: "Travail créatif — bientôt.",
       },
       photography: {
         title: "Photographie",
         placeholder: "Histoires visuelles — bientôt.",
-      },
-      projects: {
-        title: "Projets",
-        placeholder: "Projets sélectionnés — bientôt.",
       },
       contact: {
         title: "Contact",

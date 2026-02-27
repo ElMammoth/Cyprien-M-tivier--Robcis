@@ -27,10 +27,9 @@ export default function Navigation({ locale, onLocaleChange }: NavigationProps) 
 
   const navItems = [
     { key: "about", label: strings.nav.about },
-    { key: "finance", label: strings.nav.finance },
-    { key: "creative", label: strings.nav.creative },
-    { key: "photography", label: strings.nav.photography },
+    { key: "background", label: strings.nav.background },
     { key: "projects", label: strings.nav.projects },
+    { key: "photography", label: strings.nav.photography },
     { key: "contact", label: strings.nav.contact },
   ];
 
