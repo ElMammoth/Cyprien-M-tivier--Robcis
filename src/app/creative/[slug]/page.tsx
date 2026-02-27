@@ -321,9 +321,8 @@ export default function CreativeDetailPage() {
 
             <div className="border border-black/10 overflow-hidden">
               <iframe
-                src={`${project.pdfEmbed.src}#toolbar=0&navpanes=0&scrollbar=1`}
-                className="w-full"
-                style={{ height: 600 }}
+                src={`${project.pdfEmbed.src}#toolbar=0&navpanes=0&scrollbar=1&view=FitH`}
+                className="w-full h-[350px] md:h-[600px]"
                 title={isFR ? project.pdfEmbed.titleFR : project.pdfEmbed.titleEN}
               />
             </div>

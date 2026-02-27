@@ -91,7 +91,7 @@ export default function CvModal({ isOpen, onClose, pdfUrl, downloadLabel }: CvMo
             {/* PDF viewer */}
             <div className="flex-1 bg-white/5 border border-white/10">
               <iframe
-                src={pdfUrl}
+                src={`${pdfUrl}#view=FitH`}
                 className="w-full h-full"
                 title="CV Preview"
               />
