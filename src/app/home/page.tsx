@@ -9,6 +9,8 @@ import { getVisitorType, getLocale } from "@/lib/store";
 import Navigation from "@/components/Navigation";
 import CvModal from "@/components/CvModal";
 import { creativeProjects } from "@/data/creative-projects";
+import photos from "@/data/photos.json";
+import FilmStrip from "@/components/FilmStrip";
 import Link from "next/link";
 
 export default function HomePage() {
@@ -45,7 +47,7 @@ export default function HomePage() {
   const strings = t(locale);
   const hero = strings.hero[visitorType];
 
-  const otherSections = ["photography", "contact"] as const;
+  const otherSections = ["contact"] as const;
 
   const aboutData = strings.about[visitorType];
 
@@ -415,6 +417,41 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* Photography — film strip */}
+      <section
+        id="photography"
+        className="border-t border-black/10 py-24"
+      >
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.6 }}
+          className="pl-16 md:pl-28 lg:pl-40 pr-8 mb-12"
+        >
+          <div className="flex items-baseline gap-6 mb-4">
+            <span className="font-sans text-label tracking-widest text-black/30 tabular-nums">
+              05
+            </span>
+            <h2 className="font-serif text-4xl md:text-5xl">
+              {strings.sections.photography.title}
+            </h2>
+          </div>
+          <p className="font-sans text-caption tracking-wider text-black/30 ml-[calc(1.5rem+theme(spacing.6))]">
+            Fujifilm X-T5 &middot; 16-80mm
+          </p>
+        </motion.div>
+
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true, margin: "-60px" }}
+          transition={{ duration: 0.6, delay: 0.15 }}
+        >
+          <FilmStrip photos={photos} />
+        </motion.div>
+      </section>
+
       {/* Other Sections */}
       {otherSections.map((key, i) => (
         <section
@@ -430,7 +467,7 @@ export default function HomePage() {
           >
             <div className="flex items-baseline gap-6 mb-16">
               <span className="font-sans text-label tracking-widest text-black/30 tabular-nums">
-                {String(i + 5).padStart(2, "0")}
+                {String(i + 6).padStart(2, "0")}
               </span>
               <h2 className="font-serif text-4xl md:text-5xl">
                 {strings.sections[key].title}
