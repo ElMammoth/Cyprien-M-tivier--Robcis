@@ -194,7 +194,7 @@ export default function CreativeDetailPage() {
             transition={{ duration: 0.6 }}
             className="max-w-5xl mb-24"
           >
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
+            <div className="grid grid-cols-2 gap-4 md:gap-12">
               {/* Before */}
               <motion.div
                 initial={{ opacity: 0 }}
@@ -205,7 +205,7 @@ export default function CreativeDetailPage() {
                 <span className="font-sans text-micro tracking-super uppercase text-black/30 block mb-4">
                   {project.beforeAfter.labelBefore || "Before"}
                 </span>
-                <div className="flex items-center justify-center p-8">
+                <div className="flex items-center justify-center p-2 md:p-8">
                   <Image
                     src={project.beforeAfter.before}
                     alt={`${title} — Before`}
@@ -226,7 +226,7 @@ export default function CreativeDetailPage() {
                 <span className="font-sans text-micro tracking-super uppercase text-black/30 block mb-4">
                   {project.beforeAfter.labelAfter || "After"}
                 </span>
-                <div className="flex items-center justify-center p-8">
+                <div className="flex items-center justify-center p-2 md:p-8">
                   <Image
                     src={project.beforeAfter.after}
                     alt={`${title} — After`}
@@ -279,7 +279,7 @@ export default function CreativeDetailPage() {
               {isFR ? project.logoVariations.titleFR : project.logoVariations.titleEN}
             </h2>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="grid grid-cols-3 gap-3 md:gap-8">
               {project.logoVariations.items.map((variation, i) => (
                 <motion.div
                   key={variation.label}
@@ -288,13 +288,13 @@ export default function CreativeDetailPage() {
                   viewport={{ once: true, margin: "-60px" }}
                   transition={{ duration: 0.4, delay: i * 0.1 }}
                 >
-                  <div className="flex items-center justify-center p-8 aspect-square">
+                  <div className="flex items-center justify-center p-2 md:p-8 aspect-square">
                     <Image
                       src={variation.src}
                       alt={variation.label}
                       width={937}
                       height={937}
-                      className="w-full h-auto max-h-[280px] object-contain"
+                      className="w-full h-auto max-h-[120px] md:max-h-[280px] object-contain"
                     />
                   </div>
                   <span className="font-sans text-micro tracking-ultra uppercase text-black/40 block mt-4 text-center">
