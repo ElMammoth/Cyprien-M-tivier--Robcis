@@ -70,7 +70,7 @@ export default function CreativeDetailPage() {
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.4, delay: 0.2 }}
           onClick={() => router.push("/home#creative")}
-          className="font-sans text-[11px] tracking-widest uppercase text-black/30 hover:text-red transition-colors duration-300 mb-16 flex items-center gap-2"
+          className="font-sans text-label tracking-widest uppercase text-black/30 hover:text-red transition-colors duration-300 mb-16 flex items-center gap-2"
         >
           &larr; {isFR ? "Retour" : "Back"}
         </motion.button>
@@ -89,12 +89,12 @@ export default function CreativeDetailPage() {
             </span>
           )}
 
-          <h1 className="font-serif text-4xl md:text-6xl lg:text-7xl font-normal leading-[0.95] max-w-3xl mb-6">
+          <h1 className="font-serif text-4xl md:text-6xl lg:text-7xl font-normal leading-heading max-w-3xl mb-6">
             {title}
           </h1>
 
           {/* Category */}
-          <span className="font-sans text-[11px] tracking-widest uppercase text-red/60 block mb-5">
+          <span className="font-sans text-label tracking-widest uppercase text-red/60 block mb-5">
             {project.category}
           </span>
 
@@ -104,7 +104,7 @@ export default function CreativeDetailPage() {
               {project.tags.map((tag) => (
                 <span
                   key={tag}
-                  className="font-sans text-[10px] tracking-widest uppercase border border-black/10 px-3 py-1.5 text-black/40"
+                  className="font-sans text-micro tracking-widest uppercase border border-black/10 px-3 py-1.5 text-black/40"
                 >
                   {tag}
                 </span>
@@ -118,7 +118,7 @@ export default function CreativeDetailPage() {
               href={project.websiteUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 mt-5 font-sans text-[11px] tracking-widest uppercase text-black/40 hover:text-red transition-colors duration-300 group"
+              className="inline-flex items-center gap-2 mt-5 font-sans text-label tracking-widest uppercase text-black/40 hover:text-red transition-colors duration-300 group"
               whileHover="hover"
             >
               {project.websiteUrl.replace(/^https?:\/\//, "")}
@@ -146,7 +146,7 @@ export default function CreativeDetailPage() {
               initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.4, delay: 0.5 + i * 0.1 }}
-              className="font-sans text-base md:text-lg leading-[1.8] text-black/60 mb-6 last:mb-0"
+              className="font-sans text-base md:text-lg leading-reading text-black/60 mb-6 last:mb-0"
             >
               {paragraph}
             </motion.p>
@@ -202,7 +202,7 @@ export default function CreativeDetailPage() {
                 viewport={{ once: true, margin: "-60px" }}
                 transition={{ duration: 0.4 }}
               >
-                <span className="font-sans text-[10px] tracking-[0.25em] uppercase text-black/30 block mb-4">
+                <span className="font-sans text-micro tracking-super uppercase text-black/30 block mb-4">
                   {project.beforeAfter.labelBefore || "Before"}
                 </span>
                 <div className="flex items-center justify-center p-8">
@@ -223,7 +223,7 @@ export default function CreativeDetailPage() {
                 viewport={{ once: true, margin: "-60px" }}
                 transition={{ duration: 0.4, delay: 0.1 }}
               >
-                <span className="font-sans text-[10px] tracking-[0.25em] uppercase text-black/30 block mb-4">
+                <span className="font-sans text-micro tracking-super uppercase text-black/30 block mb-4">
                   {project.beforeAfter.labelAfter || "After"}
                 </span>
                 <div className="flex items-center justify-center p-8">
@@ -258,7 +258,7 @@ export default function CreativeDetailPage() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: "-60px" }}
                   transition={{ duration: 0.4, delay: i * 0.1 }}
-                  className="font-sans text-base md:text-lg leading-[1.8] text-black/60 mb-6 last:mb-0"
+                  className="font-sans text-base md:text-lg leading-reading text-black/60 mb-6 last:mb-0"
                 >
                   {paragraph}
                 </motion.p>
@@ -297,7 +297,7 @@ export default function CreativeDetailPage() {
                       className="w-full h-auto max-h-[280px] object-contain"
                     />
                   </div>
-                  <span className="font-sans text-[10px] tracking-[0.2em] uppercase text-black/35 block mt-4 text-center">
+                  <span className="font-sans text-micro tracking-ultra uppercase text-black/40 block mt-4 text-center">
                     {isFR ? (variation.labelFR || variation.label) : variation.label}
                   </span>
                 </motion.div>
@@ -340,7 +340,7 @@ export default function CreativeDetailPage() {
         >
           <button
             onClick={() => router.push("/home#creative")}
-            className="font-sans text-[11px] tracking-widest uppercase text-black/30 hover:text-red transition-colors duration-300 flex items-center gap-2"
+            className="font-sans text-label tracking-widest uppercase text-black/30 hover:text-red transition-colors duration-300 flex items-center gap-2"
           >
             &larr; {isFR ? "Tous les projets" : "All projects"}
           </button>

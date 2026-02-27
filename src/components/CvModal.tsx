@@ -60,7 +60,7 @@ export default function CvModal({ isOpen, onClose, pdfUrl, downloadLabel }: CvMo
               <a
                 href={pdfUrl}
                 download
-                className="font-sans text-[11px] tracking-widest uppercase text-cream/50 hover:text-cream transition-colors duration-200 flex items-center gap-2"
+                className="font-sans text-label tracking-widest uppercase text-cream/50 hover:text-cream transition-colors duration-200 flex items-center gap-2"
               >
                 <svg
                   width="14"

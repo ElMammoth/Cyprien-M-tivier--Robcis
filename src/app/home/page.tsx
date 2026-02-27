@@ -55,7 +55,7 @@ export default function HomePage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3, duration: 0.6 }}
-            className="block font-sans text-[11px] tracking-[0.3em] uppercase text-black/30 mb-6"
+            className="block font-sans text-label tracking-extreme uppercase text-black/30 mb-6"
           >
             {visitorType === "recruiter"
               ? "01 — Hire"
@@ -70,7 +70,7 @@ export default function HomePage() {
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.5, duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-            className="font-serif text-5xl md:text-7xl lg:text-[5.5rem] font-normal leading-[0.95] max-w-3xl mb-8"
+            className="font-serif text-5xl md:text-7xl lg:text-hero font-normal leading-heading max-w-3xl mb-8"
           >
             {hero.headline}
           </motion.h1>
@@ -111,7 +111,7 @@ export default function HomePage() {
           transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
         >
           <div className="flex items-baseline gap-6 mb-16">
-            <span className="font-sans text-[11px] tracking-widest text-black/30 tabular-nums">
+            <span className="font-sans text-label tracking-widest text-black/30 tabular-nums">
               02
             </span>
             <h2 className="font-serif text-4xl md:text-5xl">
@@ -125,7 +125,7 @@ export default function HomePage() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-80px" }}
               transition={{ duration: 0.6, delay: 0.15 }}
-              className="font-sans text-base md:text-lg leading-[1.75] text-black/70"
+              className="font-sans text-base md:text-lg leading-prose text-black/70"
             >
               {aboutData.bio}
             </motion.p>
@@ -136,7 +136,7 @@ export default function HomePage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-80px" }}
                 transition={{ duration: 0.6, delay: 0.3 }}
-                className="mt-6 font-sans text-base md:text-lg leading-[1.75] text-red/80"
+                className="mt-6 font-sans text-base md:text-lg leading-prose text-red/80"
               >
                 {aboutData.extra}
               </motion.p>
@@ -178,7 +178,7 @@ export default function HomePage() {
           transition={{ duration: 0.6 }}
         >
           <div className="flex items-baseline gap-6 mb-16">
-            <span className="font-sans text-[11px] tracking-widest text-black/30 tabular-nums">
+            <span className="font-sans text-label tracking-widest text-black/30 tabular-nums">
               03
             </span>
             <h2 className="font-serif text-4xl md:text-5xl">
@@ -209,7 +209,7 @@ export default function HomePage() {
                 <span className="font-serif text-2xl md:text-3xl font-normal leading-none">
                   {exp.year}
                 </span>
-                <span className="font-sans text-[11px] tracking-widest uppercase text-black/30 mt-1 md:mt-0">
+                <span className="font-sans text-label tracking-widest uppercase text-black/30 mt-1 md:mt-0">
                   {exp.location}
                 </span>
               </div>
@@ -218,7 +218,7 @@ export default function HomePage() {
               <p className="font-sans text-sm font-medium text-black/80 mb-1">
                 {exp.company}
               </p>
-              <p className="font-sans text-[13px] text-black/50 italic mb-2">
+              <p className="font-sans text-caption text-black/50 italic mb-2">
                 {exp.role}
               </p>
               <p className="font-sans text-sm text-black/40 leading-relaxed max-w-xl">
@@ -248,7 +248,7 @@ export default function HomePage() {
         >
           <button
             onClick={() => setCvModalOpen(true)}
-            className="group relative font-sans text-[11px] tracking-widest uppercase px-6 py-4 border border-black/20 hover:border-black transition-colors duration-300 overflow-hidden"
+            className="group relative font-sans text-label tracking-widest uppercase px-6 py-4 border border-black/20 hover:border-black transition-colors duration-300 overflow-hidden"
           >
             <span className="relative z-10 group-hover:text-cream transition-colors duration-300">
               {strings.sections.finance.cvPreview}
@@ -259,7 +259,7 @@ export default function HomePage() {
           <a
             href={strings.sections.finance.cvFile}
             download
-            className="group relative font-sans text-[11px] tracking-widest uppercase px-6 py-4 border border-red/30 hover:border-red transition-colors duration-300 overflow-hidden"
+            className="group relative font-sans text-label tracking-widest uppercase px-6 py-4 border border-red/30 hover:border-red transition-colors duration-300 overflow-hidden"
           >
             <span className="relative z-10 text-red/70 group-hover:text-cream transition-colors duration-300 flex items-center gap-2">
               <svg
@@ -291,17 +291,17 @@ export default function HomePage() {
           transition={{ duration: 0.6, delay: 0.3 }}
           className="mt-20 max-w-2xl border-l-2 border-red pl-6"
         >
-          <span className="font-sans text-[11px] tracking-[0.2em] uppercase text-red/60 block mb-3">
+          <span className="font-sans text-label tracking-ultra uppercase text-red/60 block mb-3">
             {strings.sections.finance.seekingLabel}
           </span>
-          <p className="font-sans text-base leading-[1.7] text-black/60">
+          <p className="font-sans text-base leading-body text-black/60">
             {strings.sections.finance.seeking}
           </p>
           <motion.a
             href="https://www.linkedin.com/in/m%C3%A9tivier--robcis-cyprien/"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 mt-5 font-sans text-[11px] tracking-widest uppercase text-black/40 hover:text-red transition-colors duration-300 group"
+            className="inline-flex items-center gap-2 mt-5 font-sans text-label tracking-widest uppercase text-black/40 hover:text-red transition-colors duration-300 group"
             whileHover="hover"
           >
             {strings.sections.finance.linkedin}
@@ -335,7 +335,7 @@ export default function HomePage() {
           transition={{ duration: 0.6 }}
         >
           <div className="flex items-baseline gap-6 mb-16">
-            <span className="font-sans text-[11px] tracking-widest text-black/30 tabular-nums">
+            <span className="font-sans text-label tracking-widest text-black/30 tabular-nums">
               04
             </span>
             <h2 className="font-serif text-4xl md:text-5xl">
@@ -373,16 +373,16 @@ export default function HomePage() {
 
                     {/* Title + meta */}
                     <div className="flex-1 md:pl-4">
-                      <h3 className="font-serif text-2xl md:text-4xl lg:text-5xl leading-[1.05] group-hover:text-red transition-colors duration-300">
+                      <h3 className="font-serif text-2xl md:text-4xl lg:text-5xl leading-title group-hover:text-red transition-colors duration-300">
                         {title}
                       </h3>
 
                       <div className="flex flex-wrap items-center gap-x-4 gap-y-1 mt-3">
-                        <span className="font-sans text-[10px] tracking-widest uppercase border border-black/10 px-3 py-1 text-black/40 group-hover:border-red/30 group-hover:text-red/60 transition-colors duration-300">
+                        <span className="font-sans text-micro tracking-widest uppercase border border-black/10 px-3 py-1 text-black/40 group-hover:border-red/30 group-hover:text-red/60 transition-colors duration-300">
                           {project.category}
                         </span>
                         {year && (
-                          <span className="font-sans text-[11px] tracking-widest text-black/25">
+                          <span className="font-sans text-label tracking-widest text-black/25">
                             {year}
                           </span>
                         )}
@@ -420,7 +420,7 @@ export default function HomePage() {
             transition={{ duration: 0.6 }}
           >
             <div className="flex items-baseline gap-6 mb-16">
-              <span className="font-sans text-[11px] tracking-widest text-black/30 tabular-nums">
+              <span className="font-sans text-label tracking-widest text-black/30 tabular-nums">
                 {String(i + 5).padStart(2, "0")}
               </span>
               <h2 className="font-serif text-4xl md:text-5xl">
@@ -435,16 +435,13 @@ export default function HomePage() {
 
               <div className="mt-12 flex gap-3">
                 <div
-                  className="w-16 h-16"
-                  style={{
-                    backgroundColor:
-                      i % 3 === 0
-                        ? "#E63329"
-                        : i % 3 === 1
-                        ? "#E8732A"
-                        : "#0A0A0A",
-                    opacity: i % 3 === 2 ? 0.08 : 0.15,
-                  }}
+                  className={`w-16 h-16 ${
+                    i % 3 === 0
+                      ? "bg-red opacity-15"
+                      : i % 3 === 1
+                      ? "bg-orange opacity-15"
+                      : "bg-black opacity-[0.08]"
+                  }`}
                 />
                 <div className="w-px h-16 bg-black/10" />
               </div>
@@ -456,7 +453,7 @@ export default function HomePage() {
       {/* Footer */}
       <footer className="border-t border-black/10 pl-16 md:pl-28 lg:pl-40 pr-8 py-12">
         <div className="flex flex-col md:flex-row justify-between gap-4">
-          <span className="font-sans text-[11px] tracking-widest text-black/30 uppercase">
+          <span className="font-sans text-label tracking-widest text-black/30 uppercase">
             Cyprien Métivier-Robcis &copy; 2025
           </span>
           <button
@@ -464,7 +461,7 @@ export default function HomePage() {
               localStorage.removeItem("portfolio-visitor-type");
               router.push("/");
             }}
-            className="font-sans text-[11px] tracking-widest text-black/30 uppercase hover:text-red transition-colors duration-300 text-left md:text-right"
+            className="font-sans text-label tracking-widest text-black/30 uppercase hover:text-red transition-colors duration-300 text-left md:text-right"
           >
             {locale === "en" ? "Change identity" : "Changer d\u2019identité"}
           </button>

@@ -79,7 +79,7 @@ export default function EntryPage() {
           initial={{ opacity: 0, x: -20 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="font-sans text-[11px] tracking-[0.3em] uppercase text-black/40 mb-4"
+          className="font-sans text-label tracking-extreme uppercase text-black/40 mb-4"
         >
           {strings.entry.heading}
         </motion.p>
@@ -88,7 +88,7 @@ export default function EntryPage() {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
-          className="font-serif text-5xl md:text-7xl lg:text-8xl font-normal leading-[0.95] mb-16"
+          className="font-serif text-5xl md:text-7xl lg:text-8xl font-normal leading-heading mb-16"
         >
           {strings.entry.subheading}
         </motion.h1>
@@ -136,7 +136,7 @@ export default function EntryPage() {
 
               <div className="relative flex items-baseline gap-6">
                 <span
-                  className={`font-sans text-[11px] tracking-widest tabular-nums transition-colors duration-200 ${
+                  className={`font-sans text-label tracking-widest tabular-nums transition-colors duration-200 ${
                     selectedIndex === i ? "text-cream" : "text-black/30"
                   }`}
                 >
@@ -177,7 +177,7 @@ export default function EntryPage() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 1.2, duration: 0.5 }}
-          className="font-sans text-[11px] tracking-wider text-black/30 mt-12 max-w-xs"
+          className="font-sans text-label tracking-wider text-black/30 mt-12 max-w-xs"
         >
           {strings.entry.hint}
         </motion.p>

@@ -101,10 +101,10 @@ export default function Navigation({ locale, onLocaleChange }: NavigationProps) 
                 transition={{ delay: 0.5 }}
                 className="mt-12 flex gap-8"
               >
-                <span className="font-sans text-[11px] tracking-widest text-cream/30 uppercase">
+                <span className="font-sans text-label tracking-widest text-cream/30 uppercase">
                   Cyprien Métivier-Robcis
                 </span>
-                <span className="font-sans text-[11px] tracking-widest text-cream/30 uppercase">
+                <span className="font-sans text-label tracking-widest text-cream/30 uppercase">
                   Portfolio 2025
                 </span>
               </motion.div>
