@@ -36,8 +36,15 @@ export default function Navigation({ locale, onLocaleChange }: NavigationProps) 
   function handleNavClick(sectionKey: string) {
     setMenuOpen(false);
     if (isHome) {
-      const el = document.getElementById(sectionKey);
-      if (el) el.scrollIntoView({ behavior: "smooth" });
+      // Delay scroll until menu close animation finishes
+      setTimeout(() => {
+        const el = document.getElementById(sectionKey);
+        if (el) {
+          const navHeight = 72;
+          const top = el.getBoundingClientRect().top + window.scrollY - navHeight;
+          window.scrollTo({ top, behavior: "smooth" });
+        }
+      }, 650);
     } else {
       router.push(`/home#${sectionKey}`);
     }

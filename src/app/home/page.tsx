@@ -38,7 +38,11 @@ export default function HomePage() {
     if (hash) {
       setTimeout(() => {
         const el = document.getElementById(hash);
-        if (el) el.scrollIntoView({ behavior: "smooth" });
+        if (el) {
+          const navHeight = 72;
+          const top = el.getBoundingClientRect().top + window.scrollY - navHeight;
+          window.scrollTo({ top, behavior: "smooth" });
+        }
       }, 100);
     }
   }, [router]);
