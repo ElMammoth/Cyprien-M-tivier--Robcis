@@ -529,14 +529,22 @@ export default function HomePage() {
                 {locale === "fr" ? "Liens" : "Links"}
               </span>
               <div className="flex flex-col gap-2">
-                <a
-                  href="mailto:cyprien.music@icloud.com"
-                  className="font-sans text-sm text-black/50 hover:text-red transition-colors duration-300"
-                >
-                  cyprien.music@icloud.com
-                </a>
                 <motion.a
-                  href="https://www.linkedin.com/in/m%C3%A9tivier--robcis-cyprien/"
+                  href="mailto:metiviercyprien@yahoo.fr"
+                  className="inline-flex items-center gap-1.5 font-sans text-sm text-black/50 hover:text-red transition-colors duration-300"
+                  whileHover="hover"
+                >
+                  metiviercyprien@yahoo.fr
+                  <motion.span
+                    className="inline-block text-[10px]"
+                    variants={{ hover: { x: 2, y: -2 } }}
+                    transition={{ duration: 0.2 }}
+                  >
+                    ↗
+                  </motion.span>
+                </motion.a>
+                <motion.a
+                  href="https://www.linkedin.com/in/métivier--robcis-cyprien/"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-1.5 font-sans text-sm text-black/50 hover:text-red transition-colors duration-300"
@@ -548,11 +556,11 @@ export default function HomePage() {
                     variants={{ hover: { x: 2, y: -2 } }}
                     transition={{ duration: 0.2 }}
                   >
-                    &nearr;
+                    ↗
                   </motion.span>
                 </motion.a>
                 <motion.a
-                  href="https://www.instagram.com/cymusic_/"
+                  href="https://www.instagram.com/cypwithacamera/"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-1.5 font-sans text-sm text-black/50 hover:text-red transition-colors duration-300"
@@ -564,7 +572,7 @@ export default function HomePage() {
                     variants={{ hover: { x: 2, y: -2 } }}
                     transition={{ duration: 0.2 }}
                   >
-                    &nearr;
+                    ↗
                   </motion.span>
                 </motion.a>
               </div>
