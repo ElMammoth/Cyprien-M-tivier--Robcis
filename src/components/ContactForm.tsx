@@ -111,6 +111,7 @@ export default function ContactForm({ locale }: ContactFormProps) {
     const publicKey = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY;
 
     if (!serviceId || !templateId || !publicKey) {
+      console.error("EmailJS env variables missing:", { serviceId: !!serviceId, templateId: !!templateId, publicKey: !!publicKey });
       setStatus("error");
       return;
     }

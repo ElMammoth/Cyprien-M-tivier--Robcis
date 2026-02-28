@@ -25,7 +25,16 @@ export default function EntryPage() {
       router.replace("/home");
       return;
     }
+
+    // Lock scroll while gate is visible
+    document.documentElement.style.overflow = "hidden";
+    document.body.style.overflow = "hidden";
     setMounted(true);
+
+    return () => {
+      document.documentElement.style.overflow = "";
+      document.body.style.overflow = "";
+    };
   }, [router]);
 
   const strings = t(locale);
@@ -47,7 +56,7 @@ export default function EntryPage() {
   if (!mounted) return null;
 
   return (
-    <div className="relative min-h-screen bg-cream overflow-hidden">
+    <div className="relative bg-cream overflow-hidden h-[100dvh] touch-none">
       {/* Language toggle */}
       <motion.button
         initial={{ opacity: 0 }}
@@ -74,7 +83,7 @@ export default function EntryPage() {
       />
 
       {/* Main content — offset left for brutalist asymmetry */}
-      <div className="min-h-screen flex flex-col justify-center px-6 md:pl-28 md:pr-8 lg:pl-40 max-w-4xl">
+      <div className="h-full flex flex-col justify-center px-6 md:pl-28 md:pr-8 lg:pl-40 max-w-4xl">
         {/* Heading */}
         <motion.p
           initial={{ opacity: 0, x: -20 }}
