@@ -22,7 +22,6 @@ export default function HomePage() {
   const [cvModalOpen, setCvModalOpen] = useState(false);
 
   useEffect(() => {
-    setMounted(true);
     const savedLocale = getLocale();
     setLocale(savedLocale);
 
@@ -32,6 +31,7 @@ export default function HomePage() {
       return;
     }
     setVisitorType(savedType);
+    setMounted(true);
 
     // Scroll to hash section after page mount (e.g. navigating from /creative/slug → /home#projects)
     const hash = window.location.hash.replace("#", "");

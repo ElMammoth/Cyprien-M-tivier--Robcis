@@ -17,14 +17,15 @@ export default function EntryPage() {
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
-    setMounted(true);
     const saved = getLocale();
     setLocaleState(saved);
 
     const existing = getVisitorType();
     if (existing) {
       router.replace("/home");
+      return;
     }
+    setMounted(true);
   }, [router]);
 
   const strings = t(locale);
