@@ -71,7 +71,7 @@ export default function CaribbeanIslandsPage() {
       <Navigation locale={locale} onLocaleChange={setLocale} />
 
       {/* Content wrapper */}
-      <div className="pt-28 md:pt-36 pl-16 md:pl-28 lg:pl-40 pr-8 pb-24">
+      <div className="pt-28 md:pt-36 px-6 md:pl-28 md:pr-8 lg:pl-40 pb-24">
         {/* Back button */}
         <motion.button
           initial={{ opacity: 0, x: -12 }}

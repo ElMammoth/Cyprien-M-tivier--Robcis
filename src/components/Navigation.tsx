@@ -79,7 +79,7 @@ export default function Navigation({ locale, onLocaleChange }: NavigationProps) 
             transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
             className="fixed inset-0 z-30 bg-black flex items-end"
           >
-            <div className="w-full pb-16 pl-16 md:pl-28 lg:pl-40 pr-8">
+            <div className="w-full pb-16 px-6 md:pl-28 md:pr-8 lg:pl-40">
               {navItems.map((item, i) => (
                 <motion.button
                   key={item.key}

@@ -73,7 +73,7 @@ export default function EntryPage() {
       />
 
       {/* Main content — offset left for brutalist asymmetry */}
-      <div className="min-h-screen flex flex-col justify-center pl-16 md:pl-28 lg:pl-40 pr-8 max-w-4xl">
+      <div className="min-h-screen flex flex-col justify-center px-6 md:pl-28 md:pr-8 lg:pl-40 max-w-4xl">
         {/* Heading */}
         <motion.p
           initial={{ opacity: 0, x: -20 }}

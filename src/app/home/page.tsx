@@ -55,7 +55,7 @@ export default function HomePage() {
       <Navigation locale={locale} onLocaleChange={setLocale} />
 
       {/* Hero */}
-      <section className="min-h-screen flex flex-col justify-end pl-16 md:pl-28 lg:pl-40 pr-8 pb-24">
+      <section className="min-h-screen flex flex-col justify-end px-6 md:pl-28 md:pr-8 lg:pl-40 pb-24">
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -112,7 +112,7 @@ export default function HomePage() {
       {/* About — adaptive */}
       <section
         id="about"
-        className="min-h-[70vh] border-t border-black/10 pl-16 md:pl-28 lg:pl-40 pr-8 py-24 relative"
+        className="min-h-[70vh] border-t border-black/10 px-6 md:pl-28 md:pr-8 lg:pl-40 py-24 relative"
       >
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -179,7 +179,7 @@ export default function HomePage() {
       {/* Background — timeline, CV, seeking */}
       <section
         id="background"
-        className="border-t border-black/10 pl-16 md:pl-28 lg:pl-40 pr-8 py-24 relative"
+        className="border-t border-black/10 px-6 md:pl-28 md:pr-8 lg:pl-40 py-24 relative"
       >
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -336,7 +336,7 @@ export default function HomePage() {
       {/* Projects — project grid */}
       <section
         id="projects"
-        className="border-t border-black/10 pl-16 md:pl-28 lg:pl-40 pr-8 py-24"
+        className="border-t border-black/10 px-6 md:pl-28 md:pr-8 lg:pl-40 py-24"
       >
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -426,7 +426,7 @@ export default function HomePage() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.6 }}
-          className="pl-16 md:pl-28 lg:pl-40 pr-8 mb-12"
+          className="px-6 md:pl-28 md:pr-8 lg:pl-40 mb-12"
         >
           <div className="flex items-baseline gap-6 mb-4">
             <span className="font-sans text-label tracking-widest text-black/30 tabular-nums">
@@ -454,7 +454,7 @@ export default function HomePage() {
       {/* Contact */}
       <section
         id="contact"
-        className="border-t border-black/10 pl-16 md:pl-28 lg:pl-40 pr-8 py-24"
+        className="border-t border-black/10 px-6 md:pl-28 md:pr-8 lg:pl-40 py-24"
       >
         {/* Section number + animated title */}
         <div className="mb-6">
@@ -582,7 +582,7 @@ export default function HomePage() {
       </section>
 
       {/* Footer */}
-      <footer className="border-t border-black/10 pl-16 md:pl-28 lg:pl-40 pr-8 py-12">
+      <footer className="border-t border-black/10 px-6 md:pl-28 md:pr-8 lg:pl-40 py-12">
         <div className="flex flex-col md:flex-row justify-between gap-4">
           <span className="font-sans text-label tracking-widest text-black/30 uppercase">
             Cyprien Métivier-Robcis &copy; 2025

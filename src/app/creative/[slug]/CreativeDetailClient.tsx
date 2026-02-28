@@ -60,7 +60,7 @@ export default function CreativeDetailClient() {
         </motion.div>
       )}
 
-      <div className={`pl-16 md:pl-28 lg:pl-40 pr-8 py-16 md:py-24 ${!heroSrc ? "pt-28 md:pt-36" : ""}`}>
+      <div className={`px-6 md:pl-28 md:pr-8 lg:pl-40 py-16 md:py-24 ${!heroSrc ? "pt-28 md:pt-36" : ""}`}>
         <motion.button
           initial={{ opacity: 0, x: -12 }}
           animate={{ opacity: 1, x: 0 }}
