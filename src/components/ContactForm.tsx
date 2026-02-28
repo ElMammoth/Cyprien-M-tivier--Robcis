@@ -118,10 +118,13 @@ export default function ContactForm({ locale }: ContactFormProps) {
     setStatus("sending");
 
     try {
-      await emailjs.sendForm(serviceId, templateId, formRef.current, publicKey);
+      await emailjs.sendForm(serviceId, templateId, formRef.current, {
+        publicKey,
+      });
       setStatus("sent");
       formRef.current.reset();
-    } catch {
+    } catch (err) {
+      console.error("EmailJS error:", err);
       setStatus("error");
     }
   }
