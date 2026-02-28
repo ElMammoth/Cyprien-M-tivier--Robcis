@@ -140,6 +140,22 @@ export const creativeProjects: CreativeProject[] = [
     descriptionFR: "",
     images: [],
   },
+  {
+    slug: "maldives-mauritius-comparison",
+    title: "Maldives & Mauritius \u2014 Data Comparison",
+    titleFR: "Maldives & Maurice \u2014 Comparaison de donn\u00E9es",
+    tagline: "Comparing two Indian Ocean island nations",
+    taglineFR: "Comparaison de deux nations insulaires de l\u2019oc\u00E9an Indien",
+    category: "Data Visualization",
+    tags: ["Data Visualization", "Academic", "Economics", "Illustrator"],
+    date: "2025",
+    dateFR: "2025",
+    sortDate: 202501,
+    thumbnail: "/creative/maldives-mauritius/map-maldives.svg",
+    description: "",
+    descriptionFR: "",
+    images: [],
+  },
 ];
 
 export function getProjectBySlug(slug: string): CreativeProject | undefined {
