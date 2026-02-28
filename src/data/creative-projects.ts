@@ -43,6 +43,8 @@ export interface CreativeProject {
   detailText?: string;
   detailTextFR?: string;
   websiteUrl?: string;
+  /** YYYYMM for sorting (e.g. 202510 for October 2025). Higher = more recent. */
+  sortDate?: number;
 }
 
 export const creativeProjects: CreativeProject[] = [
@@ -56,6 +58,7 @@ export const creativeProjects: CreativeProject[] = [
     tags: ["Illustrator", "Xcode", "Swift", "UI Design"],
     date: "October 2024",
     dateFR: "Octobre 2024",
+    sortDate: 202410,
     thumbnail: "/creative/finance-tracker/Visuals_Finance_Tracker_App.png",
     heroImage: "/creative/finance-tracker/Visuals_Finance_Tracker_App.png",
     heroBg: "",
@@ -73,8 +76,9 @@ export const creativeProjects: CreativeProject[] = [
     taglineFR: "Moderniser l\u2019identit\u00E9 d\u2019un traiteur suisse",
     category: "Branding",
     tags: ["Illustrator", "Brand Identity", "Logo Design"],
-    date: "2024",
-    dateFR: "2024",
+    date: "December 2024",
+    dateFR: "Décembre 2024",
+    sortDate: 202412,
     thumbnail: "/creative/elljomi/elljomi-logo-after-white.png",
     heroBg: "",
     websiteUrl: "https://elljomi.ch",
@@ -130,28 +134,11 @@ export const creativeProjects: CreativeProject[] = [
     tags: ["Data Visualization", "Academic", "Economics", "Illustrator"],
     date: "2025",
     dateFR: "2025",
+    sortDate: 202500,
     thumbnail: "/creative/caribbean/map-caribbean.svg",
     description: "",
     descriptionFR: "",
     images: [],
-  },
-  {
-    slug: "illustration-01",
-    title: "Illustration Series",
-    titleFR: "S\u00E9rie d\u2019Illustrations",
-    tagline: "Exploring form through ink and vector",
-    taglineFR: "Explorer la forme par l\u2019encre et le vecteur",
-    category: "Illustration",
-    thumbnail: "/placeholder-illustration.svg",
-    description:
-      "A series of illustrations blending hand-drawn ink work with digital vector techniques. The project explores tension between organic imperfection and computational precision, each piece starts analog and ends digital, preserving the texture of the hand throughout.",
-    descriptionFR:
-      "Une s\u00E9rie d\u2019illustrations m\u00EAlant travail \u00E0 l\u2019encre fait main et techniques vectorielles num\u00E9riques. Le projet explore la tension entre l\u2019imperfection organique et la pr\u00E9cision computationnelle, chaque pi\u00E8ce commence en analogique et se termine en num\u00E9rique, pr\u00E9servant la texture de la main tout au long du processus.",
-    images: [
-      "/placeholder-illustration-1.svg",
-      "/placeholder-illustration-2.svg",
-      "/placeholder-illustration-3.svg",
-    ],
   },
 ];
 

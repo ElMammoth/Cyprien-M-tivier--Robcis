@@ -356,7 +356,7 @@ export default function HomePage() {
 
         {/* Typography-driven project list */}
         <div className="max-w-5xl">
-          {creativeProjects.map((project, i) => {
+          {[...creativeProjects].sort((a, b) => (b.sortDate ?? 0) - (a.sortDate ?? 0)).map((project, i) => {
             const isFR = locale === "fr";
             const title = isFR ? project.titleFR : project.title;
             const year = project.date
@@ -388,7 +388,7 @@ export default function HomePage() {
                       </h3>
 
                       <div className="flex flex-wrap items-center gap-x-4 gap-y-1 mt-3">
-                        <span className="font-sans text-micro tracking-widest uppercase border border-black/10 px-3 py-1 text-black/40 group-hover:border-red/30 group-hover:text-red/60 transition-colors duration-300">
+                        <span className="font-sans text-micro tracking-widest uppercase text-black/40 group-hover:text-red/60 transition-colors duration-300">
                           {project.category}
                         </span>
                         {year && (

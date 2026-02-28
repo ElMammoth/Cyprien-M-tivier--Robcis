@@ -160,9 +160,33 @@ export default function CaribbeanIslandsPage() {
                 className="max-w-2xl"
               >
                 <p className="font-sans text-base md:text-lg leading-reading text-black/60">
-                  {isFR
-                    ? "Cette comparaison de données a été réalisée dans le cadre d\u2019une présentation one-to-one pour un cours de deuxième année de Bachelor, animé par le professeur Al Kamiensky, originaire de Chicago. Le projet a impliqué des recherches indépendantes sur trois nations insulaires caribéennes — Barbade, Antigua-et-Barbuda et Saint-Kitts-et-Nevis — en comparant des indicateurs économiques clés à travers des visualisations personnalisées réalisées sous Adobe Illustrator."
-                    : "This data comparison was produced as part of a one-to-one presentation for a second-year Bachelor course led by Professor Al Kamiensky, originally from Chicago. The project involved independent research across three Caribbean island nations — Barbados, Antigua & Barbuda, and St Kitts & Nevis — comparing key economic indicators through custom-designed visualizations built in Adobe Illustrator."}
+                  {isFR ? (
+                    <>
+                      Cette comparaison de données a été réalisée dans le cadre d{"\u2019"}une présentation one-to-one pour un cours de deuxième année de Bachelor, animé par le professeur{" "}
+                      <a
+                        href="https://www.linkedin.com/in/al-kamienski-m-b-a-ph-d-1b71127/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-red hover:underline transition-all duration-200"
+                      >
+                        Al Kamiensky
+                      </a>
+                      , originaire de Chicago. Le projet a impliqué des recherches indépendantes sur trois nations insulaires caribéennes — Barbade, Antigua-et-Barbuda et Saint-Kitts-et-Nevis — en comparant des indicateurs économiques clés à travers des visualisations personnalisées réalisées sous Adobe Illustrator.
+                    </>
+                  ) : (
+                    <>
+                      This data comparison was produced as part of a one-to-one presentation for a second-year Bachelor course led by Professor{" "}
+                      <a
+                        href="https://www.linkedin.com/in/al-kamienski-m-b-a-ph-d-1b71127/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-red hover:underline transition-all duration-200"
+                      >
+                        Al Kamiensky
+                      </a>
+                      , originally from Chicago. The project involved independent research across three Caribbean island nations — Barbados, Antigua &amp; Barbuda, and St Kitts &amp; Nevis — comparing key economic indicators through custom-designed visualizations built in Adobe Illustrator.
+                    </>
+                  )}
                 </p>
               </motion.div>
             </section>
