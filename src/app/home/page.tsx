@@ -468,7 +468,7 @@ export default function HomePage() {
             06
           </motion.span>
 
-          <h2 className="font-serif text-4xl md:text-6xl lg:text-7xl font-normal leading-heading overflow-hidden">
+          <h2 className="font-serif text-4xl md:text-6xl lg:text-7xl font-normal leading-heading md:overflow-hidden">
             {(locale === "fr" ? "Parlons ensemble." : "Let\u2019s talk.")
               .split(" ")
               .map((word, i) => (
@@ -476,7 +476,7 @@ export default function HomePage() {
                   key={i}
                   initial={{ opacity: 0, y: 40 }}
                   whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, margin: "-80px" }}
+                  viewport={{ once: true, amount: 0.1 }}
                   transition={{
                     duration: 0.6,
                     delay: 0.1 + i * 0.1,
