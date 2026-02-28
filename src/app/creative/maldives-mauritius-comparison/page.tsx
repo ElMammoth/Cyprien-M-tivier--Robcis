@@ -101,9 +101,28 @@ export default function MaldivesMauritiusPage() {
           ← {isFR ? "Retour" : "Back"}
         </motion.button>
 
+        {/* Mobile horizontal nav */}
+        <div className="md:hidden mb-10 -mx-6 px-6 overflow-x-auto scrollbar-hide">
+          <div className="flex gap-1 min-w-max">
+            {sections.map(({ id, labelEN, labelFR }) => (
+              <button
+                key={id}
+                onClick={() => scrollTo(id)}
+                className={`whitespace-nowrap py-2 px-3 font-sans text-micro tracking-widest uppercase transition-all duration-300 border-b-2 ${
+                  activeSection === id
+                    ? "border-red text-black"
+                    : "border-transparent text-black/30"
+                }`}
+              >
+                {isFR ? labelFR : labelEN}
+              </button>
+            ))}
+          </div>
+        </div>
+
         {/* Two-column layout */}
         <div className="flex gap-12 lg:gap-20 max-w-6xl">
-          {/* Sticky side navigation */}
+          {/* Sticky side navigation — desktop only */}
           <nav className="hidden md:block w-44 lg:w-52 shrink-0">
             <div className="sticky top-32">
               <ul className="flex flex-col gap-1">
@@ -206,7 +225,7 @@ export default function MaldivesMauritiusPage() {
               {/* Two maps side by side */}
               <motion.div
                 {...fadeUp}
-                className="grid grid-cols-1 sm:grid-cols-2 gap-8"
+                className="grid grid-cols-2 gap-4 sm:gap-8"
               >
                 <div className="flex flex-col items-center">
                   <div className="w-full aspect-square flex items-center justify-center overflow-hidden">
@@ -254,7 +273,7 @@ export default function MaldivesMauritiusPage() {
 
               {/* CPI graph */}
               <motion.div {...fadeUpSvg} className="mb-12">
-                <h3 className="font-serif text-lg md:text-2xl font-normal text-black/70 mb-6">
+                <h3 className="font-serif text-lg md:text-xl font-normal text-black/70 mb-6">
                   Graph Comparing the CPI of the Maldives &amp; Mauritius
                 </h3>
                 <Image
@@ -268,7 +287,7 @@ export default function MaldivesMauritiusPage() {
 
               {/* Housing graph + text */}
               <motion.div {...fadeUpSvg}>
-                <h3 className="font-serif text-lg md:text-2xl font-normal text-black/70 mb-6">
+                <h3 className="font-serif text-lg md:text-xl font-normal text-black/70 mb-6">
                   Housing Price Comparison between Malé &amp; Port Louis
                 </h3>
                 <div className="flex flex-col lg:flex-row gap-8 items-start">
@@ -282,7 +301,7 @@ export default function MaldivesMauritiusPage() {
                     />
                   </div>
                   <div className="lg:w-72 shrink-0 border-l-2 border-red pl-5">
-                    <p className="font-sans text-sm leading-relaxed text-black/50">
+                    <p className="font-sans text-sm leading-reading text-black/60">
                       Maldives is expensive, with a cost index of 92.9 and monthly expenses around $800 (excluding rent). In contrast, Mauritius is far more affordable, with an index of 64.3 and costs 40–50% lower.
                     </p>
                   </div>
@@ -305,21 +324,21 @@ export default function MaldivesMauritiusPage() {
 
               <motion.div
                 {...fadeUp}
-                className="grid grid-cols-1 md:grid-cols-2 gap-10"
+                className="grid grid-cols-1 md:grid-cols-2 gap-8"
               >
                 <div>
-                  <h3 className="font-serif text-lg md:text-xl font-normal mb-4">
+                  <h3 className="font-serif text-lg md:text-xl font-normal text-black/70 mb-4">
                     Healthcare in the Maldives
                   </h3>
-                  <p className="font-sans text-sm md:text-base leading-reading text-black/55">
+                  <p className="font-sans text-sm md:text-base leading-reading text-black/60">
                     Healthcare is free at the point of use for residents, but quality and capacity are variable. Most retirees would be strongly advised to have private health insurance to cover specialist care or medical evacuation, as the local system may not meet all needs.
                   </p>
                 </div>
                 <div>
-                  <h3 className="font-serif text-lg md:text-xl font-normal mb-4">
+                  <h3 className="font-serif text-lg md:text-xl font-normal text-black/70 mb-4">
                     Healthcare in Mauritius
                   </h3>
-                  <p className="font-sans text-sm md:text-base leading-reading text-black/55">
+                  <p className="font-sans text-sm md:text-base leading-reading text-black/60">
                     Public healthcare is free for all residents, including expatriate retirees. Public hospitals and clinics offer broad coverage (around 73% of all healthcare needs are managed free of charge in public facilities), ensuring affordable access. However, due to high demand, public facilities can be crowded and the care, while generally good, may not match the comfort or technology of private hospitals.
                   </p>
                 </div>
@@ -347,7 +366,7 @@ export default function MaldivesMauritiusPage() {
 
               <motion.div
                 {...fadeUpSvg}
-                className="grid grid-cols-1 sm:grid-cols-2 gap-8"
+                className="grid grid-cols-2 gap-4 sm:gap-8"
               >
                 <div>
                   <h3 className="font-serif text-lg md:text-xl font-normal text-black/70 mb-4 text-center">
@@ -357,7 +376,7 @@ export default function MaldivesMauritiusPage() {
                     src="/creative/maldives-mauritius/climate-mauritius.svg"
                     alt="Climate data for Mauritius"
                     width={600}
-                    height={500}
+                    height={600}
                     className="w-full h-auto"
                   />
                 </div>
@@ -369,7 +388,7 @@ export default function MaldivesMauritiusPage() {
                     src="/creative/maldives-mauritius/climate-maldives.svg"
                     alt="Climate data for the Maldives"
                     width={600}
-                    height={500}
+                    height={600}
                     className="w-full h-auto"
                   />
                 </div>
@@ -390,14 +409,15 @@ export default function MaldivesMauritiusPage() {
               </motion.h2>
 
               <motion.div {...fadeUp}>
-                <h3 className="font-serif text-lg md:text-2xl font-normal mb-6">
+                <h3 className="font-serif text-lg md:text-xl font-normal text-black/70 mb-6">
                   Retired Non-Citizen Residence Permit in Mauritius
                 </h3>
-                <p className="font-sans text-sm md:text-base leading-reading text-black/55 max-w-2xl mb-10">
+                <p className="font-sans text-sm md:text-base leading-reading text-black/60 max-w-2xl mb-10">
                   Retiring in Mauritius may be your best choice if you are aged 50 or above. With just USD 1,500 monthly, you can benefit from a 10-year Residence Permit and live in a peaceful environment. The Residence Permit further offers you the possibility to apply for a 20-year Permanent Residence Permit after 3 consecutive years.
                 </p>
 
-                <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                {/* Desktop: 3 columns with borders */}
+                <div className="hidden sm:grid grid-cols-3 gap-6">
                   <div className="border border-black/10 p-6">
                     <span className="font-sans text-micro tracking-widest uppercase text-black/35 block mb-3">
                       Residency Validity
@@ -410,7 +430,7 @@ export default function MaldivesMauritiusPage() {
                     <span className="font-sans text-micro tracking-widest uppercase text-black/35 block mb-3">
                       Renewable
                     </span>
-                    <p className="font-sans text-sm leading-relaxed text-black/60">
+                    <p className="font-sans text-sm leading-reading text-black/60">
                       Evidence of availability of funds of USD 18,000 yearly from country of origin or residence
                     </p>
                   </div>
@@ -421,6 +441,36 @@ export default function MaldivesMauritiusPage() {
                     <span className="font-serif text-xl md:text-2xl font-normal">
                       USD 1,000
                     </span>
+                  </div>
+                </div>
+
+                {/* Mobile: stacked with red left border */}
+                <div className="sm:hidden border-l-2 border-red pl-5 flex flex-col gap-6">
+                  <div>
+                    <span className="font-sans text-micro tracking-widest uppercase text-black/35 block mb-2">
+                      Renewable
+                    </span>
+                    <p className="font-sans text-sm leading-reading text-black/60">
+                      Evidence of availability of funds of USD 18,000 yearly from country of origin or residence
+                    </p>
+                  </div>
+                  <div className="flex gap-8">
+                    <div>
+                      <span className="font-sans text-micro tracking-widest uppercase text-black/35 block mb-2">
+                        Applicable Fee
+                      </span>
+                      <span className="font-serif text-xl font-normal">
+                        USD 1,000
+                      </span>
+                    </div>
+                    <div>
+                      <span className="font-sans text-micro tracking-widest uppercase text-black/35 block mb-2">
+                        Residency Validity
+                      </span>
+                      <span className="font-serif text-xl font-normal">
+                        10 Years
+                      </span>
+                    </div>
                   </div>
                 </div>
               </motion.div>
@@ -440,7 +490,7 @@ export default function MaldivesMauritiusPage() {
               </motion.h2>
 
               <motion.div {...fadeUpSvg}>
-                <h3 className="font-serif text-lg md:text-2xl font-normal text-black/70 mb-6">
+                <h3 className="font-serif text-lg md:text-xl font-normal text-black/70 mb-6">
                   GDP of Mauritius and the Maldives from 1980 to 2024
                 </h3>
                 <Image

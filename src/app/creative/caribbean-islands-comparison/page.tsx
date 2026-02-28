@@ -83,9 +83,28 @@ export default function CaribbeanIslandsPage() {
           &larr; {isFR ? "Retour" : "Back"}
         </motion.button>
 
+        {/* Mobile horizontal nav */}
+        <div className="md:hidden mb-10 -mx-6 px-6 overflow-x-auto scrollbar-hide">
+          <div className="flex gap-1 min-w-max">
+            {sections.map(({ id, labelEN, labelFR }) => (
+              <button
+                key={id}
+                onClick={() => scrollTo(id)}
+                className={`whitespace-nowrap py-2 px-3 font-sans text-micro tracking-widest uppercase transition-all duration-300 border-b-2 ${
+                  activeSection === id
+                    ? "border-red text-black"
+                    : "border-transparent text-black/30"
+                }`}
+              >
+                {isFR ? labelFR : labelEN}
+              </button>
+            ))}
+          </div>
+        </div>
+
         {/* Two-column layout: sticky nav + scrollable content */}
         <div className="flex gap-12 lg:gap-20 max-w-6xl">
-          {/* Sticky side navigation */}
+          {/* Sticky side navigation — desktop only */}
           <nav className="hidden md:block w-44 lg:w-52 shrink-0">
             <div className="sticky top-32">
               <ul className="flex flex-col gap-1">
