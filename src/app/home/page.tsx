@@ -6,6 +6,7 @@ import { motion } from "framer-motion";
 import { Locale, VisitorType } from "@/lib/translations";
 import { t } from "@/lib/translations";
 import { getVisitorType, getLocale } from "@/lib/store";
+import { useIsMobile, mDur, mInitial, mStagger, mViewport } from "@/hooks/useMobileMotion";
 import Navigation from "@/components/Navigation";
 import CvModal from "@/components/CvModal";
 import { creativeProjects } from "@/data/creative-projects";
@@ -20,6 +21,7 @@ export default function HomePage() {
   const [visitorType, setVisitorType] = useState<VisitorType>("visitor");
   const [mounted, setMounted] = useState(false);
   const [cvModalOpen, setCvModalOpen] = useState(false);
+  const mob = useIsMobile();
 
   useEffect(() => {
     const savedLocale = getLocale();
@@ -63,12 +65,12 @@ export default function HomePage() {
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
+          transition={{ duration: mDur(0.8, mob), delay: 0.2 }}
         >
           <motion.span
-            initial={{ opacity: 0, y: 20 }}
+            initial={mInitial({ opacity: 0, y: 20 }, mob)}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.3, duration: 0.6 }}
+            transition={{ delay: 0.3, duration: mDur(0.6, mob) }}
             className="block font-sans text-label tracking-extreme uppercase text-black/30 mb-6"
           >
             {visitorType === "recruiter"
@@ -81,36 +83,40 @@ export default function HomePage() {
           </motion.span>
 
           <motion.h1
-            initial={{ opacity: 0, y: 40 }}
+            initial={mInitial({ opacity: 0, y: 40 }, mob)}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.5, duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+            transition={{ delay: mob ? 0.3 : 0.5, duration: mDur(0.8, mob), ease: [0.22, 1, 0.36, 1] }}
             className="font-serif text-5xl md:text-7xl lg:text-hero font-normal leading-heading max-w-3xl mb-8"
           >
             {hero.headline}
           </motion.h1>
 
           <motion.p
-            initial={{ opacity: 0, x: -20 }}
+            initial={mInitial({ opacity: 0, x: -20 }, mob)}
             animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: 0.8, duration: 0.6 }}
+            transition={{ delay: mob ? 0.4 : 0.8, duration: mDur(0.6, mob) }}
             className="font-sans text-base md:text-lg text-black/50 max-w-md"
           >
             {hero.sub}
           </motion.p>
         </motion.div>
 
-        <motion.div
-          initial={{ scaleX: 0 }}
-          animate={{ scaleX: 1 }}
-          transition={{ delay: 1, duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-          className="absolute top-[45%] right-0 w-32 h-px bg-red origin-right"
-        />
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1.2, duration: 0.5 }}
-          className="absolute top-24 right-16 w-2 h-2 bg-orange rounded-full"
-        />
+        {!mob && (
+          <>
+            <motion.div
+              initial={{ scaleX: 0 }}
+              animate={{ scaleX: 1 }}
+              transition={{ delay: 1, duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+              className="absolute top-[45%] right-0 w-32 h-px bg-red origin-right"
+            />
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 1.2, duration: 0.5 }}
+              className="absolute top-24 right-16 w-2 h-2 bg-orange rounded-full"
+            />
+          </>
+        )}
       </section>
 
       {/* About — adaptive */}
@@ -119,10 +125,10 @@ export default function HomePage() {
         className="min-h-[70vh] border-t border-black/10 px-6 md:pl-28 md:pr-8 lg:pl-40 py-24 relative"
       >
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={mInitial({ opacity: 0, y: 30 }, mob)}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+          viewport={mViewport}
+          transition={{ duration: mDur(0.7, mob), ease: [0.22, 1, 0.36, 1] }}
         >
           <div className="flex items-baseline gap-6 mb-16">
             <span className="font-sans text-label tracking-widest text-black/30 tabular-nums">
@@ -135,10 +141,10 @@ export default function HomePage() {
 
           <div className="max-w-2xl">
             <motion.p
-              initial={{ opacity: 0, y: 16 }}
+              initial={mInitial({ opacity: 0, y: 16 }, mob)}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-80px" }}
-              transition={{ duration: 0.6, delay: 0.15 }}
+              viewport={mViewport}
+              transition={{ duration: mDur(0.6, mob), delay: 0.15 }}
               className="font-sans text-base md:text-lg leading-prose text-black/70"
             >
               {aboutData.bio}
@@ -146,10 +152,10 @@ export default function HomePage() {
 
             {"extra" in aboutData && (
               <motion.p
-                initial={{ opacity: 0, y: 16 }}
+                initial={mInitial({ opacity: 0, y: 16 }, mob)}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-80px" }}
-                transition={{ duration: 0.6, delay: 0.3 }}
+                viewport={mViewport}
+                transition={{ duration: mDur(0.6, mob), delay: 0.3 }}
                 className="mt-6 font-sans text-base md:text-lg leading-prose text-red/80"
               >
                 {aboutData.extra}
@@ -160,8 +166,8 @@ export default function HomePage() {
             <motion.div
               initial={{ scaleX: 0 }}
               whileInView={{ scaleX: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
+              viewport={mViewport}
+              transition={{ duration: mDur(0.6, mob), delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
               className="mt-12 flex items-center gap-4 origin-left"
             >
               <div className="w-16 h-px bg-red" />
@@ -174,8 +180,8 @@ export default function HomePage() {
         <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.5 }}
+          viewport={mViewport}
+          transition={{ duration: mDur(0.5, mob), delay: 0.5 }}
           className="absolute top-24 right-12 w-8 h-24 bg-orange/10 hidden lg:block"
         />
       </section>
@@ -186,10 +192,10 @@ export default function HomePage() {
         className="border-t border-black/10 px-6 md:pl-28 md:pr-8 lg:pl-40 py-24 relative"
       >
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={mInitial({ opacity: 0, y: 30 }, mob)}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.6 }}
+          viewport={mViewport}
+          transition={{ duration: mDur(0.6, mob) }}
         >
           <div className="flex items-baseline gap-6 mb-16">
             <span className="font-sans text-label tracking-widest text-black/30 tabular-nums">
@@ -206,10 +212,10 @@ export default function HomePage() {
           {strings.sections.background.experience.map((exp, i) => (
             <motion.div
               key={exp.company}
-              initial={{ opacity: 0, y: 24 }}
+              initial={mInitial({ opacity: 0, y: 24 }, mob)}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-60px" }}
-              transition={{ duration: 0.5, delay: i * 0.12 }}
+              viewport={mViewport}
+              transition={{ duration: mDur(0.5, mob), delay: mStagger(i, 0.12, 0, mob) }}
               className="relative pl-8 md:pl-12 pb-12 last:pb-0 group"
             >
               {/* Vertical line */}
@@ -254,10 +260,10 @@ export default function HomePage() {
 
         {/* CV buttons */}
         <motion.div
-          initial={{ opacity: 0, y: 12 }}
+          initial={mInitial({ opacity: 0, y: 12 }, mob)}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-60px" }}
-          transition={{ duration: 0.5, delay: 0.2 }}
+          viewport={mViewport}
+          transition={{ duration: mDur(0.5, mob), delay: 0.2 }}
           className="flex flex-wrap gap-4 mt-16 max-w-3xl"
         >
           <button
@@ -299,10 +305,10 @@ export default function HomePage() {
 
         {/* Currently seeking */}
         <motion.div
-          initial={{ opacity: 0, y: 16 }}
+          initial={mInitial({ opacity: 0, y: 16 }, mob)}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-60px" }}
-          transition={{ duration: 0.6, delay: 0.3 }}
+          viewport={mViewport}
+          transition={{ duration: mDur(0.6, mob), delay: 0.3 }}
           className="mt-20 max-w-2xl border-l-2 border-red pl-6"
         >
           <span className="font-sans text-label tracking-ultra uppercase text-red/60 block mb-3">
@@ -343,10 +349,10 @@ export default function HomePage() {
         className="border-t border-black/10 px-6 md:pl-28 md:pr-8 lg:pl-40 py-24"
       >
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={mInitial({ opacity: 0, y: 30 }, mob)}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.6 }}
+          viewport={mViewport}
+          transition={{ duration: mDur(0.6, mob) }}
         >
           <div className="flex items-baseline gap-6 mb-16">
             <span className="font-sans text-label tracking-widest text-black/30 tabular-nums">
@@ -370,10 +376,10 @@ export default function HomePage() {
             return (
               <motion.div
                 key={project.slug}
-                initial={{ opacity: 0, y: 24 }}
+                initial={mInitial({ opacity: 0, y: 24 }, mob)}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-60px" }}
-                transition={{ duration: 0.5, delay: i * 0.08 }}
+                viewport={mViewport}
+                transition={{ duration: mDur(0.5, mob), delay: mStagger(i, 0.08, 0, mob) }}
               >
                 <Link
                   href={`/creative/${project.slug}`}
@@ -426,10 +432,10 @@ export default function HomePage() {
         className="border-t border-black/10 py-24"
       >
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={mInitial({ opacity: 0, y: 30 }, mob)}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.6 }}
+          viewport={mViewport}
+          transition={{ duration: mDur(0.6, mob) }}
           className="px-6 md:pl-28 md:pr-8 lg:pl-40 mb-12"
         >
           <div className="flex items-baseline gap-6 mb-4">
@@ -448,8 +454,8 @@ export default function HomePage() {
         <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
-          viewport={{ once: true, margin: "-60px" }}
-          transition={{ duration: 0.6, delay: 0.15 }}
+          viewport={mViewport}
+          transition={{ duration: mDur(0.6, mob), delay: 0.15 }}
         >
           <FilmStrip photos={photos} />
         </motion.div>
@@ -463,10 +469,10 @@ export default function HomePage() {
         {/* Section number + animated title */}
         <div className="mb-6">
           <motion.span
-            initial={{ opacity: 0, y: 12 }}
+            initial={mInitial({ opacity: 0, y: 12 }, mob)}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.4 }}
+            viewport={mViewport}
+            transition={{ duration: mDur(0.4, mob) }}
             className="block font-sans text-label tracking-widest text-black/30 tabular-nums mb-6"
           >
             06
@@ -478,12 +484,12 @@ export default function HomePage() {
               .map((word, i) => (
                 <motion.span
                   key={i}
-                  initial={{ opacity: 0, y: 40 }}
+                  initial={mInitial({ opacity: 0, y: 40 }, mob)}
                   whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, amount: 0.1 }}
+                  viewport={mViewport}
                   transition={{
-                    duration: 0.6,
-                    delay: 0.1 + i * 0.1,
+                    duration: mDur(0.6, mob),
+                    delay: mStagger(i, 0.1, 0.1, mob),
                     ease: [0.22, 1, 0.36, 1],
                   }}
                   className="inline-block mr-[0.3em]"
@@ -498,8 +504,8 @@ export default function HomePage() {
         <motion.p
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
-          viewport={{ once: true, margin: "-60px" }}
-          transition={{ duration: 0.5, delay: 0.4 }}
+          viewport={mViewport}
+          transition={{ duration: mDur(0.5, mob), delay: 0.4 }}
           className="font-sans text-caption tracking-wider text-black/30 mb-16 max-w-lg"
         >
           {locale === "fr"
@@ -512,10 +518,10 @@ export default function HomePage() {
 
         {/* Info block */}
         <motion.div
-          initial={{ opacity: 0, y: 16 }}
+          initial={mInitial({ opacity: 0, y: 16 }, mob)}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-40px" }}
-          transition={{ duration: 0.5, delay: 0.5 }}
+          viewport={mViewport}
+          transition={{ duration: mDur(0.5, mob), delay: 0.5 }}
           className="mt-20 pt-12 border-t border-black/10 max-w-[680px]"
         >
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">

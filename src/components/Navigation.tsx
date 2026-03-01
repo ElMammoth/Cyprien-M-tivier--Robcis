@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
+import { useIsMobile, mDur, mInitial, mStagger } from "@/hooks/useMobileMotion";
 import { Locale } from "@/lib/translations";
 import { t } from "@/lib/translations";
 import { setLocale } from "@/lib/store";
@@ -18,6 +19,7 @@ export default function Navigation({ locale, onLocaleChange }: NavigationProps) 
   const router = useRouter();
   const strings = t(locale);
   const isHome = pathname === "/home";
+  const mob = useIsMobile();
 
   function toggleLocale() {
     const next = locale === "en" ? "fr" : "en";
@@ -83,17 +85,17 @@ export default function Navigation({ locale, onLocaleChange }: NavigationProps) 
             initial={{ clipPath: "inset(0 0 100% 0)" }}
             animate={{ clipPath: "inset(0 0 0% 0)" }}
             exit={{ clipPath: "inset(0 0 100% 0)" }}
-            transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+            transition={{ duration: mDur(0.6, mob), ease: [0.22, 1, 0.36, 1] }}
             className="fixed inset-0 z-30 bg-black flex items-end"
           >
             <div className="w-full pb-16 px-6 md:pl-28 md:pr-8 lg:pl-40">
               {navItems.map((item, i) => (
                 <motion.button
                   key={item.key}
-                  initial={{ opacity: 0, y: 20 }}
+                  initial={mInitial({ opacity: 0, y: 20 }, mob)}
                   animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -10 }}
-                  transition={{ delay: 0.1 + i * 0.05, duration: 0.4 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ delay: mStagger(i, 0.05, 0.1, mob), duration: mDur(0.4, mob) }}
                   onClick={() => handleNavClick(item.key)}
                   className="block font-serif text-4xl md:text-6xl text-cream/70 hover:text-cream py-2 md:py-3 transition-colors duration-200 text-left"
                 >

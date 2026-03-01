@@ -17,6 +17,11 @@
     background-color: theme('colors.cream');
     color: theme('colors.black');
     cursor: default;
+    overflow-x: hidden;
+  }
+
+  body {
+    overflow-x: hidden;
   }
 
   ::selection {

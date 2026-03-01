@@ -4,6 +4,7 @@ import { useEffect, useState, useRef } from "react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 import { motion } from "framer-motion";
+import { useIsMobile, mDur, mInitial, mViewport } from "@/hooks/useMobileMotion";
 import { Locale } from "@/lib/translations";
 import { getLocale } from "@/lib/store";
 import Navigation from "@/components/Navigation";
@@ -23,6 +24,7 @@ export default function MaldivesMauritiusPage() {
   const [mounted, setMounted] = useState(false);
   const [activeSection, setActiveSection] = useState("overview");
   const sectionRefs = useRef<Record<string, HTMLElement | null>>({});
+  const mob = useIsMobile();
 
   useEffect(() => {
     setMounted(true);
@@ -57,17 +59,17 @@ export default function MaldivesMauritiusPage() {
   const isFR = locale === "fr";
 
   const fadeUp = {
-    initial: { opacity: 0, y: 24 },
+    initial: mInitial({ opacity: 0, y: 24 }, mob),
     whileInView: { opacity: 1, y: 0 },
-    viewport: { once: true as const, margin: "-80px" },
-    transition: { duration: 0.6 },
+    viewport: mViewport,
+    transition: { duration: mDur(0.6, mob) },
   };
 
   const fadeUpSvg = {
-    initial: { opacity: 0, y: 20 },
+    initial: mInitial({ opacity: 0, y: 20 }, mob),
     whileInView: { opacity: 1, y: 0 },
-    viewport: { once: true as const, margin: "-80px" },
-    transition: { duration: 0.7 },
+    viewport: mViewport,
+    transition: { duration: mDur(0.7, mob) },
   };
 
   function scrollTo(id: string) {
@@ -92,9 +94,9 @@ export default function MaldivesMauritiusPage() {
       <div className="pt-28 md:pt-36 px-6 md:pl-28 md:pr-8 lg:pl-40 pb-24">
         {/* Back button */}
         <motion.button
-          initial={{ opacity: 0, x: -12 }}
+          initial={mInitial({ opacity: 0, x: -12 }, mob)}
           animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.4, delay: 0.2 }}
+          transition={{ duration: mDur(0.4, mob), delay: 0.2 }}
           onClick={() => router.push("/home#projects")}
           className="font-sans text-label tracking-widest uppercase text-black/30 hover:text-red transition-colors duration-300 mb-16 flex items-center gap-2"
         >
@@ -153,9 +155,9 @@ export default function MaldivesMauritiusPage() {
               className="mb-24"
             >
               <motion.div
-                initial={{ opacity: 0, y: 24 }}
+                initial={mInitial({ opacity: 0, y: 24 }, mob)}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
+                transition={{ duration: mDur(0.6, mob), delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
               >
                 <span className="font-serif text-lg md:text-xl text-black/30 block mb-4">
                   2025
@@ -187,9 +189,9 @@ export default function MaldivesMauritiusPage() {
 
               {/* Academic context — EN/FR */}
               <motion.div
-                initial={{ opacity: 0, y: 16 }}
+                initial={mInitial({ opacity: 0, y: 16 }, mob)}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.5 }}
+                transition={{ duration: mDur(0.5, mob), delay: 0.5 }}
                 className="max-w-2xl mb-12"
               >
                 <p className="font-sans text-base md:text-lg leading-reading text-black/60">
@@ -235,6 +237,7 @@ export default function MaldivesMauritiusPage() {
                       width={600}
                       height={600}
                       className="w-full h-full object-contain"
+                      loading="lazy"
                     />
                   </div>
                   <span className="font-sans text-label tracking-widest uppercase text-black/40 mt-4">
@@ -249,6 +252,7 @@ export default function MaldivesMauritiusPage() {
                       width={600}
                       height={600}
                       className="w-full h-full object-contain"
+                      loading="lazy"
                     />
                   </div>
                   <span className="font-sans text-label tracking-widest uppercase text-black/40 mt-4">
@@ -282,6 +286,7 @@ export default function MaldivesMauritiusPage() {
                   width={1200}
                   height={800}
                   className="w-full h-auto"
+                  loading="lazy"
                 />
               </motion.div>
 
@@ -298,6 +303,7 @@ export default function MaldivesMauritiusPage() {
                       width={1200}
                       height={800}
                       className="w-full h-auto"
+                      loading="lazy"
                     />
                   </div>
                   <div className="lg:w-72 shrink-0 border-l-2 border-red pl-5">
@@ -378,6 +384,7 @@ export default function MaldivesMauritiusPage() {
                     width={600}
                     height={600}
                     className="w-full h-auto"
+                    loading="lazy"
                   />
                 </div>
                 <div>
@@ -390,6 +397,7 @@ export default function MaldivesMauritiusPage() {
                     width={600}
                     height={600}
                     className="w-full h-auto"
+                    loading="lazy"
                   />
                 </div>
               </motion.div>
@@ -499,6 +507,7 @@ export default function MaldivesMauritiusPage() {
                   width={1200}
                   height={800}
                   className="w-full h-auto"
+                  loading="lazy"
                 />
               </motion.div>
             </section>
@@ -507,8 +516,8 @@ export default function MaldivesMauritiusPage() {
             <motion.div
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.4 }}
+              viewport={mViewport}
+              transition={{ duration: mDur(0.4, mob) }}
               className="pt-8 border-t border-black/10"
             >
               <button

@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { useParams, useRouter } from "next/navigation";
 import Image from "next/image";
 import { motion } from "framer-motion";
+import { useIsMobile, mDur, mInitial, mStagger, mViewport } from "@/hooks/useMobileMotion";
 import { Locale } from "@/lib/translations";
 import { getLocale } from "@/lib/store";
 import { getProjectBySlug, CreativeProject } from "@/data/creative-projects";
@@ -15,6 +16,7 @@ export default function CreativeDetailClient() {
   const [locale, setLocale] = useState<Locale>("en");
   const [mounted, setMounted] = useState(false);
   const [project, setProject] = useState<CreativeProject | null>(null);
+  const mob = useIsMobile();
 
   useEffect(() => {
     setMounted(true);
@@ -44,7 +46,7 @@ export default function CreativeDetailClient() {
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: mDur(0.6, mob) }}
           className="w-full relative overflow-hidden pt-20 flex justify-center"
         >
           <div className="w-full max-h-[600px] flex items-center justify-center">
@@ -62,9 +64,9 @@ export default function CreativeDetailClient() {
 
       <div className={`px-6 md:pl-28 md:pr-8 lg:pl-40 py-16 md:py-24 ${!heroSrc ? "pt-28 md:pt-36" : ""}`}>
         <motion.button
-          initial={{ opacity: 0, x: -12 }}
+          initial={mInitial({ opacity: 0, x: -12 }, mob)}
           animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.4, delay: 0.2 }}
+          transition={{ duration: mDur(0.4, mob), delay: 0.2 }}
           onClick={() => router.push("/home#projects")}
           className="font-sans text-label tracking-widest uppercase text-black/30 hover:text-red transition-colors duration-300 mb-16 flex items-center gap-2"
         >
@@ -72,9 +74,9 @@ export default function CreativeDetailClient() {
         </motion.button>
 
         <motion.div
-          initial={{ opacity: 0, y: 24 }}
+          initial={mInitial({ opacity: 0, y: 24 }, mob)}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
+          transition={{ duration: mDur(0.6, mob), delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
           className="mb-12"
         >
           {date && (
@@ -125,17 +127,17 @@ export default function CreativeDetailClient() {
         </motion.div>
 
         <motion.div
-          initial={{ opacity: 0, y: 16 }}
+          initial={mInitial({ opacity: 0, y: 16 }, mob)}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.5 }}
+          transition={{ duration: mDur(0.5, mob), delay: 0.5 }}
           className="max-w-2xl mb-20"
         >
           {description.split("\n\n").map((paragraph, i) => (
             <motion.p
               key={i}
-              initial={{ opacity: 0, y: 12 }}
+              initial={mInitial({ opacity: 0, y: 12 }, mob)}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.4, delay: 0.5 + i * 0.1 }}
+              transition={{ duration: mDur(0.4, mob), delay: mStagger(i, 0.1, 0.5, mob) }}
               className="font-sans text-base md:text-lg leading-reading text-black/60 mb-6 last:mb-0"
             >
               {paragraph}
@@ -156,10 +158,10 @@ export default function CreativeDetailClient() {
               return (
                 <motion.div
                   key={src}
-                  initial={{ opacity: 0, y: 20 }}
+                  initial={mInitial({ opacity: 0, y: 20 }, mob)}
                   whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, margin: "-60px" }}
-                  transition={{ duration: 0.5, delay: i * 0.1 }}
+                  viewport={mViewport}
+                  transition={{ duration: mDur(0.5, mob), delay: mStagger(i, 0.1, 0, mob) }}
                   className={`relative aspect-[4/3] bg-black/[0.03] overflow-hidden ${spans}`}
                 >
                   <Image
@@ -167,6 +169,7 @@ export default function CreativeDetailClient() {
                     alt={`${title} — ${i + 1}`}
                     fill
                     className="object-contain"
+                    loading="lazy"
                   />
                 </motion.div>
               );
@@ -176,18 +179,18 @@ export default function CreativeDetailClient() {
 
         {project.beforeAfter && (
           <motion.div
-            initial={{ opacity: 0, y: 24 }}
+            initial={mInitial({ opacity: 0, y: 24 }, mob)}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-80px" }}
-            transition={{ duration: 0.6 }}
+            viewport={mViewport}
+            transition={{ duration: mDur(0.6, mob) }}
             className="max-w-5xl mb-24"
           >
             <div className="grid grid-cols-2 gap-4 md:gap-12">
               <motion.div
                 initial={{ opacity: 0 }}
                 whileInView={{ opacity: 1 }}
-                viewport={{ once: true, margin: "-60px" }}
-                transition={{ duration: 0.4 }}
+                viewport={mViewport}
+                transition={{ duration: mDur(0.4, mob) }}
               >
                 <span className="font-sans text-micro tracking-super uppercase text-black/30 block mb-4">
                   {project.beforeAfter.labelBefore || "Before"}
@@ -199,6 +202,7 @@ export default function CreativeDetailClient() {
                     width={1314}
                     height={1310}
                     className="w-full h-auto max-h-[400px] object-contain"
+                    loading="lazy"
                   />
                 </div>
               </motion.div>
@@ -206,8 +210,8 @@ export default function CreativeDetailClient() {
               <motion.div
                 initial={{ opacity: 0 }}
                 whileInView={{ opacity: 1 }}
-                viewport={{ once: true, margin: "-60px" }}
-                transition={{ duration: 0.4, delay: 0.1 }}
+                viewport={mViewport}
+                transition={{ duration: mDur(0.4, mob), delay: 0.1 }}
               >
                 <span className="font-sans text-micro tracking-super uppercase text-black/30 block mb-4">
                   {project.beforeAfter.labelAfter || "After"}
@@ -219,6 +223,7 @@ export default function CreativeDetailClient() {
                     width={937}
                     height={937}
                     className="w-full h-auto max-h-[400px] object-contain"
+                    loading="lazy"
                   />
                 </div>
               </motion.div>
@@ -228,10 +233,10 @@ export default function CreativeDetailClient() {
 
         {project.detailText && (
           <motion.div
-            initial={{ opacity: 0, y: 16 }}
+            initial={mInitial({ opacity: 0, y: 16 }, mob)}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-80px" }}
-            transition={{ duration: 0.5 }}
+            viewport={mViewport}
+            transition={{ duration: mDur(0.5, mob) }}
             className="max-w-2xl mb-24"
           >
             {(isFR ? (project.detailTextFR || project.detailText) : project.detailText)
@@ -239,10 +244,10 @@ export default function CreativeDetailClient() {
               .map((paragraph: string, i: number) => (
                 <motion.p
                   key={i}
-                  initial={{ opacity: 0, y: 12 }}
+                  initial={mInitial({ opacity: 0, y: 12 }, mob)}
                   whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, margin: "-60px" }}
-                  transition={{ duration: 0.4, delay: i * 0.1 }}
+                  viewport={mViewport}
+                  transition={{ duration: mDur(0.4, mob), delay: mStagger(i, 0.1, 0, mob) }}
                   className="font-sans text-base md:text-lg leading-reading text-black/60 mb-6 last:mb-0"
                 >
                   {paragraph}
@@ -253,10 +258,10 @@ export default function CreativeDetailClient() {
 
         {project.logoVariations && (
           <motion.div
-            initial={{ opacity: 0, y: 24 }}
+            initial={mInitial({ opacity: 0, y: 24 }, mob)}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-80px" }}
-            transition={{ duration: 0.6 }}
+            viewport={mViewport}
+            transition={{ duration: mDur(0.6, mob) }}
             className="max-w-5xl mb-24"
           >
             <h2 className="font-serif text-3xl md:text-4xl font-normal mb-12">
@@ -267,10 +272,10 @@ export default function CreativeDetailClient() {
               {project.logoVariations.items.map((variation, i) => (
                 <motion.div
                   key={variation.label}
-                  initial={{ opacity: 0, y: 16 }}
+                  initial={mInitial({ opacity: 0, y: 16 }, mob)}
                   whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, margin: "-60px" }}
-                  transition={{ duration: 0.4, delay: i * 0.1 }}
+                  viewport={mViewport}
+                  transition={{ duration: mDur(0.4, mob), delay: mStagger(i, 0.1, 0, mob) }}
                 >
                   <div className="flex items-center justify-center p-2 md:p-8 aspect-square">
                     <Image
@@ -279,6 +284,7 @@ export default function CreativeDetailClient() {
                       width={937}
                       height={937}
                       className="w-full h-auto max-h-[120px] md:max-h-[280px] object-contain"
+                      loading="lazy"
                     />
                   </div>
                   <span className="font-sans text-micro tracking-ultra uppercase text-black/40 block mt-4 text-center">
@@ -292,10 +298,10 @@ export default function CreativeDetailClient() {
 
         {project.pdfEmbed && (
           <motion.div
-            initial={{ opacity: 0, y: 24 }}
+            initial={mInitial({ opacity: 0, y: 24 }, mob)}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-80px" }}
-            transition={{ duration: 0.6 }}
+            viewport={mViewport}
+            transition={{ duration: mDur(0.6, mob) }}
             className="max-w-5xl mb-24"
           >
             <h2 className="font-serif text-3xl md:text-4xl font-normal mb-12">
@@ -315,8 +321,8 @@ export default function CreativeDetailClient() {
         <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.4 }}
+          viewport={mViewport}
+          transition={{ duration: mDur(0.4, mob) }}
           className="mt-20 pt-8 border-t border-black/10"
         >
           <button

@@ -90,10 +90,15 @@ export default function FilmStrip({ photos }: FilmStripProps) {
     };
   }, [lightboxIndex, photos.length]);
 
-  // Wheel scroll hijacking — vertical wheel → horizontal scroll on desktop
+  // Wheel scroll hijacking — vertical wheel → horizontal scroll on desktop only.
+  // Disabled on touch devices (pointer: coarse) so normal swipe works naturally.
   useEffect(() => {
     const el = scrollRef.current;
     if (!el) return;
+
+    // Skip on touch devices — let native horizontal swipe work
+    if (window.matchMedia("(pointer: coarse)").matches) return;
+
     function handleWheel(e: WheelEvent) {
       // Only hijack if there's meaningful vertical delta and the strip is scrollable
       if (Math.abs(e.deltaY) < 5) return;

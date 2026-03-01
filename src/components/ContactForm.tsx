@@ -2,6 +2,7 @@
 
 import { useRef, useState } from "react";
 import { motion } from "framer-motion";
+import { mViewport } from "@/hooks/useMobileMotion";
 import emailjs from "@emailjs/browser";
 
 interface FloatingFieldProps {
@@ -30,10 +31,10 @@ function FloatingField({
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: 16 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-40px" }}
-      transition={{ duration: 0.4, delay }}
+      initial={{ opacity: 0 }}
+      whileInView={{ opacity: 1 }}
+      viewport={mViewport}
+      transition={{ duration: 0.3, delay }}
       className="relative"
     >
       {/* Floating label */}
@@ -111,7 +112,6 @@ export default function ContactForm({ locale }: ContactFormProps) {
     const publicKey = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY;
 
     if (!serviceId || !templateId || !publicKey) {
-      console.error("EmailJS env variables missing:", { serviceId: !!serviceId, templateId: !!templateId, publicKey: !!publicKey });
       setStatus("error");
       return;
     }
@@ -124,8 +124,7 @@ export default function ContactForm({ locale }: ContactFormProps) {
       });
       setStatus("sent");
       formRef.current.reset();
-    } catch (err) {
-      console.error("EmailJS error:", err);
+    } catch {
       setStatus("error");
     }
   }
@@ -195,10 +194,10 @@ export default function ContactForm({ locale }: ContactFormProps) {
 
           {/* Submit button */}
           <motion.div
-            initial={{ opacity: 0, y: 12 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-40px" }}
-            transition={{ duration: 0.4, delay: 0.35 }}
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={mViewport}
+            transition={{ duration: 0.3, delay: 0.35 }}
           >
             <button
               type="submit"
