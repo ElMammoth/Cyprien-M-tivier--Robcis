@@ -110,10 +110,10 @@ export default function Navigation({ locale, onLocaleChange }: NavigationProps) 
                 className="mt-12 flex gap-8"
               >
                 <span className="font-sans text-label tracking-widest text-cream/30 uppercase">
-                  Cyprien Métivier-Robcis
+                  Cyprien Métivier--Robcis
                 </span>
                 <span className="font-sans text-label tracking-widest text-cream/30 uppercase">
-                  Portfolio 2025
+                  Portfolio 2026
                 </span>
               </motion.div>
             </div>

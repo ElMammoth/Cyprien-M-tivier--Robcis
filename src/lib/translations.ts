@@ -28,7 +28,7 @@ export const translations = {
         sub: "Dig around. Break things. Ask questions.",
       },
       visitor: {
-        headline: "Cyprien Métivier-Robcis",
+        headline: "Cyprien Métivier--Robcis",
         sub: "Portfolio — Background, Projects, Photography.",
       },
     },
@@ -133,7 +133,7 @@ export const translations = {
         sub: "Explorez. Cassez. Questionnez.",
       },
       visitor: {
-        headline: "Cyprien Métivier-Robcis",
+        headline: "Cyprien Métivier--Robcis",
         sub: "Portfolio — Parcours, Projets, Photographie.",
       },
     },

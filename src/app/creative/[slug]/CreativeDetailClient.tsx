@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef, useCallback } from "react";
 import { useParams, useRouter } from "next/navigation";
 import Image from "next/image";
 import { motion } from "framer-motion";
@@ -17,6 +17,22 @@ export default function CreativeDetailClient() {
   const [mounted, setMounted] = useState(false);
   const [project, setProject] = useState<CreativeProject | null>(null);
   const mob = useIsMobile();
+  const pdfContainerRef = useRef<HTMLDivElement>(null);
+  const [pdfScale, setPdfScale] = useState(1);
+  const PDF_W = 794;
+
+  const measurePdf = useCallback(() => {
+    if (!mob || !pdfContainerRef.current) { setPdfScale(1); return; }
+    const w = pdfContainerRef.current.clientWidth;
+    setPdfScale(Math.min(w / PDF_W, 1));
+  }, [mob]);
+
+  useEffect(() => {
+    measurePdf();
+    const ro = new ResizeObserver(measurePdf);
+    if (pdfContainerRef.current) ro.observe(pdfContainerRef.current);
+    return () => ro.disconnect();
+  }, [measurePdf]);
 
   useEffect(() => {
     setMounted(true);
@@ -308,12 +324,25 @@ export default function CreativeDetailClient() {
               {isFR ? project.pdfEmbed.titleFR : project.pdfEmbed.titleEN}
             </h2>
 
-            <div className="border border-black/10 overflow-hidden">
-              <iframe
-                src={`${project.pdfEmbed.src}#toolbar=0&navpanes=0&scrollbar=1&view=FitH`}
-                className="w-full h-[350px] md:h-[600px]"
-                title={isFR ? project.pdfEmbed.titleFR : project.pdfEmbed.titleEN}
-              />
+            <div ref={pdfContainerRef} className="border border-black/10 overflow-hidden relative">
+              {mob && pdfScale < 1 ? (
+                <iframe
+                  src={`${project.pdfEmbed.src}#toolbar=0&navpanes=0&scrollbar=1&view=FitH`}
+                  style={{
+                    width: PDF_W,
+                    height: `${350 / pdfScale}px`,
+                    transform: `scale(${pdfScale})`,
+                    transformOrigin: "top left",
+                  }}
+                  title={isFR ? project.pdfEmbed.titleFR : project.pdfEmbed.titleEN}
+                />
+              ) : (
+                <iframe
+                  src={`${project.pdfEmbed.src}#toolbar=0&navpanes=0&scrollbar=1&view=FitH`}
+                  className="w-full h-[350px] md:h-[600px]"
+                  title={isFR ? project.pdfEmbed.titleFR : project.pdfEmbed.titleEN}
+                />
+              )}
             </div>
           </motion.div>
         )}

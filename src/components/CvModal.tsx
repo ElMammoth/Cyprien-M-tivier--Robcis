@@ -1,7 +1,8 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useRef, useState, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { useIsMobile } from "@/hooks/useMobileMotion";
 
 interface CvModalProps {
   isOpen: boolean;
@@ -10,7 +11,27 @@ interface CvModalProps {
   downloadLabel: string;
 }
 
+const PDF_NATIVE_W = 794; // A4 at 96 dpi
+
 export default function CvModal({ isOpen, onClose, pdfUrl, downloadLabel }: CvModalProps) {
+  const mob = useIsMobile();
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [scale, setScale] = useState(1);
+
+  const measure = useCallback(() => {
+    if (!mob || !containerRef.current) { setScale(1); return; }
+    const w = containerRef.current.clientWidth;
+    setScale(Math.min(w / PDF_NATIVE_W, 1));
+  }, [mob]);
+
+  useEffect(() => {
+    if (!isOpen) return;
+    measure();
+    const ro = new ResizeObserver(measure);
+    if (containerRef.current) ro.observe(containerRef.current);
+    return () => ro.disconnect();
+  }, [isOpen, measure]);
+
   useEffect(() => {
     if (isOpen) {
       document.body.style.overflow = "hidden";
@@ -89,12 +110,25 @@ export default function CvModal({ isOpen, onClose, pdfUrl, downloadLabel }: CvMo
             </div>
 
             {/* PDF viewer */}
-            <div className="flex-1 bg-white/5 border border-white/10">
-              <iframe
-                src={`${pdfUrl}#view=FitH`}
-                className="w-full h-full"
-                title="CV Preview"
-              />
+            <div ref={containerRef} className="flex-1 bg-white/5 border border-white/10 overflow-hidden relative">
+              {mob && scale < 1 ? (
+                <iframe
+                  src={`${pdfUrl}#view=FitH`}
+                  style={{
+                    width: PDF_NATIVE_W,
+                    height: `${100 / scale}%`,
+                    transform: `scale(${scale})`,
+                    transformOrigin: "top left",
+                  }}
+                  title="CV Preview"
+                />
+              ) : (
+                <iframe
+                  src={`${pdfUrl}#view=FitH`}
+                  className="w-full h-full"
+                  title="CV Preview"
+                />
+              )}
             </div>
           </motion.div>
         </motion.div>

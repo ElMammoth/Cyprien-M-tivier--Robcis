@@ -38,14 +38,17 @@ export default function HomePage() {
     // Scroll to hash section after page mount (e.g. navigating from /creative/slug → /home#projects)
     const hash = window.location.hash.replace("#", "");
     if (hash) {
-      setTimeout(() => {
-        const el = document.getElementById(hash);
-        if (el) {
-          const navHeight = 72;
-          const top = el.getBoundingClientRect().top + window.scrollY - navHeight;
-          window.scrollTo({ top, behavior: "smooth" });
-        }
-      }, 100);
+      // Use requestAnimationFrame + delay to wait for layout to settle
+      requestAnimationFrame(() => {
+        setTimeout(() => {
+          const el = document.getElementById(hash);
+          if (el) {
+            const navHeight = 72;
+            const top = el.getBoundingClientRect().top + window.scrollY - navHeight;
+            window.scrollTo({ top, behavior: "smooth" });
+          }
+        }, 300);
+      });
     }
   }, [router]);
 
@@ -86,7 +89,10 @@ export default function HomePage() {
             initial={mInitial({ opacity: 0, y: 40 }, mob)}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: mob ? 0.3 : 0.5, duration: mDur(0.8, mob), ease: [0.22, 1, 0.36, 1] }}
-            className="font-serif text-5xl md:text-7xl lg:text-hero font-normal leading-heading max-w-3xl mb-8"
+            className={`font-serif md:text-7xl lg:text-hero font-normal leading-heading max-w-3xl mb-8 ${
+              visitorType === "visitor" ? "text-4xl" : "text-5xl"
+            }`}
+            style={visitorType === "visitor" && mob ? { wordSpacing: "0.15em" } : undefined}
           >
             {hero.headline}
           </motion.h1>
@@ -530,7 +536,7 @@ export default function HomePage() {
                 {locale === "fr" ? "Localisation" : "Location"}
               </span>
               <p className="font-sans text-sm text-black/60">
-                Paris, near Parc Monceau
+                {locale === "fr" ? "Paris, près du Parc Monceau" : "Paris, near Parc Monceau"}
               </p>
             </div>
 
@@ -595,7 +601,7 @@ export default function HomePage() {
       <footer className="border-t border-black/10 px-6 md:pl-28 md:pr-8 lg:pl-40 py-12">
         <div className="flex flex-col md:flex-row justify-between gap-4">
           <span className="font-sans text-label tracking-widest text-black/30 uppercase">
-            Cyprien Métivier-Robcis &copy; 2025
+            Cyprien Métivier--Robcis &copy; 2026
           </span>
           <button
             onClick={() => {

@@ -15,7 +15,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Cyprien Métivier-Robcis — Portfolio",
+  title: "Cyprien Métivier--Robcis — Portfolio",
   description: "Finance, Creative, Photography",
 };
 
