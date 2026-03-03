@@ -1,0 +1,12 @@
+[
+  { "isbn": "9780060555665", "title": "Good to Great", "author": "Jim Collins" },
+  { "isbn": "9780061234002", "title": "Freakonomics", "author": "Steven D. Levitt & Stephen J. Dubner" },
+  { "isbn": "9780141036144", "title": "Thinking, Fast and Slow", "author": "Daniel Kahneman" },
+  { "isbn": "9780062316110", "title": "Sapiens", "author": "Yuval Noah Harari" },
+  { "isbn": "9780307887436", "title": "The Lean Startup", "author": "Eric Ries" },
+  { "isbn": "9781591847984", "title": "Hooked", "author": "Nir Eyal" },
+  { "isbn": "9780465050659", "title": "The Design of Everyday Things", "author": "Don Norman" },
+  { "isbn": "9780812981605", "title": "The Intelligent Investor", "author": "Benjamin Graham" },
+  { "isbn": "9780743273565", "title": "The Great Gatsby", "author": "F. Scott Fitzgerald" },
+  { "isbn": "9780374533557", "title": "Antifragile", "author": "Nassim Nicholas Taleb" }
+]

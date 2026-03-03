@@ -36,6 +36,7 @@ export const translations = {
       about: "About",
       background: "Background",
       projects: "Projects",
+      readings: "Readings",
       contact: "Contact",
     },
     about: {
@@ -136,6 +137,7 @@ export const translations = {
       about: "À propos",
       background: "Parcours",
       projects: "Projets",
+      readings: "Lectures",
       contact: "Contact",
     },
     about: {

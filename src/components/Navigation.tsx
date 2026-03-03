@@ -31,11 +31,19 @@ export default function Navigation({ locale, onLocaleChange }: NavigationProps) 
     { key: "about", label: strings.nav.about },
     { key: "background", label: strings.nav.background },
     { key: "projects", label: strings.nav.projects },
+    { key: "readings", label: strings.nav.readings },
     { key: "contact", label: strings.nav.contact },
   ];
 
+  // Keys that map to standalone pages instead of homepage sections
+  const pageRoutes: Record<string, string> = { readings: "/readings" };
+
   function handleNavClick(sectionKey: string) {
     setMenuOpen(false);
+    if (pageRoutes[sectionKey]) {
+      setTimeout(() => router.push(pageRoutes[sectionKey]), 650);
+      return;
+    }
     if (isHome) {
       // Delay scroll until menu close animation finishes
       setTimeout(() => {
