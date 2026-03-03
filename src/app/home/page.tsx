@@ -10,8 +10,6 @@ import { useIsMobile, mDur, mInitial, mStagger, mViewport } from "@/hooks/useMob
 import Navigation from "@/components/Navigation";
 import CvModal from "@/components/CvModal";
 import { creativeProjects } from "@/data/creative-projects";
-import photos from "@/data/photos.json";
-import FilmStrip from "@/components/FilmStrip";
 import ContactForm from "@/components/ContactForm";
 import Link from "next/link";
 
@@ -432,41 +430,6 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Photography — film strip */}
-      <section
-        id="photography"
-        className="border-t border-black/10 py-24"
-      >
-        <motion.div
-          initial={mInitial({ opacity: 0, y: 30 }, mob)}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={mViewport}
-          transition={{ duration: mDur(0.6, mob) }}
-          className="px-6 md:pl-28 md:pr-8 lg:pl-40 mb-12"
-        >
-          <div className="flex items-baseline gap-6 mb-4">
-            <span className="font-sans text-label tracking-widest text-black/30 tabular-nums">
-              05
-            </span>
-            <h2 className="font-serif text-4xl md:text-5xl">
-              {strings.sections.photography.title}
-            </h2>
-          </div>
-          <p className="font-sans text-caption tracking-wider text-black/30 ml-[calc(1.5rem+theme(spacing.6))]">
-            Fujifilm X-T5 &middot; 16-80mm
-          </p>
-        </motion.div>
-
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={mViewport}
-          transition={{ duration: mDur(0.6, mob), delay: 0.15 }}
-        >
-          <FilmStrip photos={photos} />
-        </motion.div>
-      </section>
-
       {/* Contact */}
       <section
         id="contact"
@@ -481,7 +444,7 @@ export default function HomePage() {
             transition={{ duration: mDur(0.4, mob) }}
             className="block font-sans text-label tracking-widest text-black/30 tabular-nums mb-6"
           >
-            06
+            05
           </motion.span>
 
           <h2 className="font-serif text-4xl md:text-6xl lg:text-7xl font-normal leading-heading md:overflow-hidden">

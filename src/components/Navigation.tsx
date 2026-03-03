@@ -31,7 +31,6 @@ export default function Navigation({ locale, onLocaleChange }: NavigationProps) 
     { key: "about", label: strings.nav.about },
     { key: "background", label: strings.nav.background },
     { key: "projects", label: strings.nav.projects },
-    { key: "photography", label: strings.nav.photography },
     { key: "contact", label: strings.nav.contact },
   ];
 

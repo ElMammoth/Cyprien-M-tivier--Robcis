@@ -29,14 +29,13 @@ export const translations = {
       },
       visitor: {
         headline: "Cyprien Métivier--Robcis",
-        sub: "Portfolio — Background, Projects, Photography.",
+        sub: "Portfolio — Background, Projects.",
       },
     },
     nav: {
       about: "About",
       background: "Background",
       projects: "Projects",
-      photography: "Photography",
       contact: "Contact",
     },
     about: {
@@ -97,10 +96,6 @@ export const translations = {
         title: "Projects",
         placeholder: "Creative work & direction — coming soon.",
       },
-      photography: {
-        title: "Photography",
-        placeholder: "Visual stories — coming soon.",
-      },
       contact: {
         title: "Contact",
         placeholder: "Get in touch — coming soon.",
@@ -134,14 +129,13 @@ export const translations = {
       },
       visitor: {
         headline: "Cyprien Métivier--Robcis",
-        sub: "Portfolio — Parcours, Projets, Photographie.",
+        sub: "Portfolio — Parcours, Projets.",
       },
     },
     nav: {
       about: "À propos",
       background: "Parcours",
       projects: "Projets",
-      photography: "Photographie",
       contact: "Contact",
     },
     about: {
@@ -201,10 +195,6 @@ export const translations = {
       projects: {
         title: "Projets",
         placeholder: "Travail créatif — bientôt.",
-      },
-      photography: {
-        title: "Photographie",
-        placeholder: "Histoires visuelles — bientôt.",
       },
       contact: {
         title: "Contact",
