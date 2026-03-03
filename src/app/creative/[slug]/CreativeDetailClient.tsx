@@ -324,26 +324,24 @@ export default function CreativeDetailClient() {
               {isFR ? project.pdfEmbed.titleFR : project.pdfEmbed.titleEN}
             </h2>
 
-            <div ref={pdfContainerRef} className="border border-black/10 overflow-hidden relative">
-              {mob && pdfScale < 1 ? (
-                <iframe
-                  src={`${project.pdfEmbed.src}#toolbar=0&navpanes=0&scrollbar=1&view=FitH`}
-                  style={{
-                    width: PDF_W,
-                    height: `${350 / pdfScale}px`,
-                    transform: `scale(${pdfScale})`,
-                    transformOrigin: "top left",
-                  }}
-                  title={isFR ? project.pdfEmbed.titleFR : project.pdfEmbed.titleEN}
-                />
-              ) : (
+            {mob ? (
+              <a
+                href={project.pdfEmbed.src}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-sans text-label tracking-widest uppercase text-black/30 hover:text-red transition-colors duration-300 flex items-center gap-2"
+              >
+                {isFR ? "Ouvrir les Brand Guidelines" : "Open Brand Guidelines"} ↗
+              </a>
+            ) : (
+              <div ref={pdfContainerRef} className="border border-black/10 overflow-hidden relative">
                 <iframe
                   src={`${project.pdfEmbed.src}#toolbar=0&navpanes=0&scrollbar=1&view=FitH`}
                   className="w-full h-[350px] md:h-[600px]"
                   title={isFR ? project.pdfEmbed.titleFR : project.pdfEmbed.titleEN}
                 />
-              )}
-            </div>
+              </div>
+            )}
           </motion.div>
         )}
 

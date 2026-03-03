@@ -110,26 +110,40 @@ export default function CvModal({ isOpen, onClose, pdfUrl, downloadLabel }: CvMo
             </div>
 
             {/* PDF viewer */}
-            <div ref={containerRef} className="flex-1 bg-white/5 border border-white/10 overflow-hidden relative">
-              {mob && scale < 1 ? (
-                <iframe
-                  src={`${pdfUrl}#view=FitH`}
-                  style={{
-                    width: PDF_NATIVE_W,
-                    height: `${100 / scale}%`,
-                    transform: `scale(${scale})`,
-                    transformOrigin: "top left",
-                  }}
-                  title="CV Preview"
-                />
-              ) : (
+            {mob ? (
+              <div className="flex-1 flex flex-col items-center justify-center gap-6 bg-white/5 border border-white/10 px-6">
+                <a
+                  href="/cv/Resume_Cyprien_EN_26.pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="font-sans text-label tracking-widest uppercase text-cream/50 hover:text-cream transition-colors duration-200 flex items-center gap-2"
+                >
+                  <svg width="14" height="14" viewBox="0 0 14 14" fill="none" className="inline-block">
+                    <path d="M7 1v9m0 0L3.5 6.5M7 10l3.5-3.5M1 13h12" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
+                  Open CV in English ↗
+                </a>
+                <a
+                  href="/cv/Resume_Cyprien_FR_26.pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="font-sans text-label tracking-widest uppercase text-cream/50 hover:text-cream transition-colors duration-200 flex items-center gap-2"
+                >
+                  <svg width="14" height="14" viewBox="0 0 14 14" fill="none" className="inline-block">
+                    <path d="M7 1v9m0 0L3.5 6.5M7 10l3.5-3.5M1 13h12" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
+                  Open CV in French ↗
+                </a>
+              </div>
+            ) : (
+              <div ref={containerRef} className="flex-1 bg-white/5 border border-white/10 overflow-hidden relative">
                 <iframe
                   src={`${pdfUrl}#view=FitH`}
                   className="w-full h-full"
                   title="CV Preview"
                 />
-              )}
-            </div>
+              </div>
+            )}
           </motion.div>
         </motion.div>
       )}
