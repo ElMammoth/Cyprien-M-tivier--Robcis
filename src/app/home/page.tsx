@@ -22,6 +22,11 @@ export default function HomePage() {
   const mob = useIsMobile();
 
   useEffect(() => {
+    // Prevent browser from restoring a stale scroll position on navigation
+    if ("scrollRestoration" in window.history) {
+      window.history.scrollRestoration = "manual";
+    }
+
     const savedLocale = getLocale();
     setLocale(savedLocale);
 
@@ -50,15 +55,13 @@ export default function HomePage() {
     }
   }, [router]);
 
-  if (!mounted) return null;
-
   const strings = t(locale);
   const hero = strings.hero[visitorType];
 
   const aboutData = strings.about[visitorType];
 
   return (
-    <div className="min-h-screen bg-cream">
+    <div className={`min-h-screen bg-cream${mounted ? "" : " invisible"}`}>
       <Navigation locale={locale} onLocaleChange={setLocale} />
 
       {/* Hero */}
