@@ -16,69 +16,20 @@ interface Book {
 }
 
 function BookCard({ book, index, mob }: { book: Book; index: number; mob: boolean }) {
-  const [flipped, setFlipped] = useState(false);
-  const [imgError, setImgError] = useState(false);
-
   return (
     <motion.div
       initial={mInitial({ opacity: 0, y: 24 }, mob)}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={mViewport}
       transition={{ duration: mDur(0.5, mob), delay: mStagger(index, 0.06, 0, mob) }}
-      className="aspect-[2/3]"
-      style={{ perspective: "800px" }}
+      className="aspect-[2/3] bg-cream border border-black/10 flex flex-col items-center justify-center p-4 text-center"
     >
-      <div
-        onClick={() => setFlipped((f) => !f)}
-        className={`relative w-full h-full cursor-pointer transition-transform duration-[400ms] ease-[cubic-bezier(0.22,1,0.36,1)] ${
-          mob ? "" : "md:hover:[transform:rotateY(180deg)]"
-        }`}
-        style={{
-          transformStyle: "preserve-3d",
-          transform: flipped ? "rotateY(180deg)" : "rotateY(0deg)",
-        }}
-      >
-        {/* Front face */}
-        <div
-          className="absolute inset-0 overflow-hidden"
-          style={{ backfaceVisibility: "hidden" }}
-        >
-          {imgError ? (
-            <div className="w-full h-full bg-black flex flex-col items-center justify-center p-4 text-center">
-              <span className="font-serif text-sm md:text-base text-cream leading-tight mb-2">
-                {book.title}
-              </span>
-              <span className="font-sans text-micro tracking-widest uppercase text-cream/50">
-                {book.author}
-              </span>
-            </div>
-          ) : (
-            /* eslint-disable-next-line @next/next/no-img-element */
-            <img
-              src={`https://covers.openlibrary.org/b/isbn/${book.isbn}-L.jpg`}
-              alt={`${book.title} by ${book.author}`}
-              onError={() => setImgError(true)}
-              className="w-full h-full object-cover"
-            />
-          )}
-        </div>
-
-        {/* Back face */}
-        <div
-          className="absolute inset-0 bg-cream border border-black/10 flex flex-col items-center justify-center p-4 text-center"
-          style={{
-            backfaceVisibility: "hidden",
-            transform: "rotateY(180deg)",
-          }}
-        >
-          <span className="font-serif text-sm md:text-lg leading-tight mb-3">
-            {book.title}
-          </span>
-          <span className="font-sans text-micro md:text-caption tracking-widest uppercase text-black/40">
-            {book.author}
-          </span>
-        </div>
-      </div>
+      <span className="font-serif text-sm md:text-lg leading-tight mb-3">
+        {book.title}
+      </span>
+      <span className="font-sans text-micro md:text-caption tracking-widest uppercase text-black/40">
+        {book.author}
+      </span>
     </motion.div>
   );
 }
