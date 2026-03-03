@@ -88,25 +88,23 @@ export default function CaribbeanIslandsPage() {
         {/* Two-column layout: sticky nav + scrollable content */}
         <div className="flex gap-12 lg:gap-20 max-w-6xl">
           {/* Sticky side navigation — desktop only */}
-          <nav className="hidden md:block w-44 lg:w-52 shrink-0">
-            <div className="sticky top-32">
-              <ul className="flex flex-col gap-1">
-                {sections.map(({ id, labelEN, labelFR }) => (
-                  <li key={id}>
-                    <button
-                      onClick={() => scrollTo(id)}
-                      className={`w-full text-left py-2.5 pl-4 font-sans text-label tracking-widest uppercase transition-all duration-300 border-l-2 ${
-                        activeSection === id
-                          ? "border-red text-black"
-                          : "border-transparent text-black/30 hover:text-black/50"
-                      }`}
-                    >
-                      {isFR ? labelFR : labelEN}
-                    </button>
-                  </li>
-                ))}
-              </ul>
-            </div>
+          <nav className="hidden md:block w-44 lg:w-52 shrink-0 self-start sticky top-32">
+            <ul className="flex flex-col gap-1">
+              {sections.map(({ id, labelEN, labelFR }) => (
+                <li key={id}>
+                  <button
+                    onClick={() => scrollTo(id)}
+                    className={`w-full text-left py-2.5 pl-4 font-sans text-label tracking-widest uppercase transition-all duration-300 border-l-2 ${
+                      activeSection === id
+                        ? "border-red text-black"
+                        : "border-transparent text-black/30 hover:text-black/50"
+                    }`}
+                  >
+                    {isFR ? labelFR : labelEN}
+                  </button>
+                </li>
+              ))}
+            </ul>
           </nav>
 
           {/* Scrollable content */}
