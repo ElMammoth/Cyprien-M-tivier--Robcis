@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState, useRef, useCallback } from "react";
+import { useEffect, useState, useRef } from "react";
 import { useParams, useRouter } from "next/navigation";
 import Image from "next/image";
 import { motion } from "framer-motion";
@@ -18,21 +18,6 @@ export default function CreativeDetailClient() {
   const [project, setProject] = useState<CreativeProject | null>(null);
   const mob = useIsMobile();
   const pdfContainerRef = useRef<HTMLDivElement>(null);
-  const [pdfScale, setPdfScale] = useState(1);
-  const PDF_W = 794;
-
-  const measurePdf = useCallback(() => {
-    if (!mob || !pdfContainerRef.current) { setPdfScale(1); return; }
-    const w = pdfContainerRef.current.clientWidth;
-    setPdfScale(Math.min(w / PDF_W, 1));
-  }, [mob]);
-
-  useEffect(() => {
-    measurePdf();
-    const ro = new ResizeObserver(measurePdf);
-    if (pdfContainerRef.current) ro.observe(pdfContainerRef.current);
-    return () => ro.disconnect();
-  }, [measurePdf]);
 
   useEffect(() => {
     setMounted(true);

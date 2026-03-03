@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState, useCallback } from "react";
+import { useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useIsMobile } from "@/hooks/useMobileMotion";
 
@@ -11,26 +11,9 @@ interface CvModalProps {
   downloadLabel: string;
 }
 
-const PDF_NATIVE_W = 794; // A4 at 96 dpi
-
 export default function CvModal({ isOpen, onClose, pdfUrl, downloadLabel }: CvModalProps) {
   const mob = useIsMobile();
   const containerRef = useRef<HTMLDivElement>(null);
-  const [scale, setScale] = useState(1);
-
-  const measure = useCallback(() => {
-    if (!mob || !containerRef.current) { setScale(1); return; }
-    const w = containerRef.current.clientWidth;
-    setScale(Math.min(w / PDF_NATIVE_W, 1));
-  }, [mob]);
-
-  useEffect(() => {
-    if (!isOpen) return;
-    measure();
-    const ro = new ResizeObserver(measure);
-    if (containerRef.current) ro.observe(containerRef.current);
-    return () => ro.disconnect();
-  }, [isOpen, measure]);
 
   useEffect(() => {
     if (isOpen) {
