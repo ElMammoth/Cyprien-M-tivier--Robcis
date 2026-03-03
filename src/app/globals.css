@@ -17,11 +17,11 @@
     background-color: theme('colors.cream');
     color: theme('colors.black');
     cursor: default;
-    overflow-x: hidden;
+    overflow-x: clip;
   }
 
   body {
-    overflow-x: hidden;
+    overflow-x: clip;
   }
 
   ::selection {
