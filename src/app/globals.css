@@ -28,4 +28,11 @@
     background-color: theme('colors.red');
     color: theme('colors.cream');
   }
+
+  /* Hide default cursor on desktop (non-touch) devices */
+  @media (pointer: fine) {
+    *, *::before, *::after {
+      cursor: none !important;
+    }
+  }
 }
