@@ -1,12 +1,67 @@
 [
-  { "isbn": "9780060555665", "title": "Good to Great", "author": "Jim Collins" },
-  { "isbn": "9780061234002", "title": "Freakonomics", "author": "Steven D. Levitt & Stephen J. Dubner" },
-  { "isbn": "9780141036144", "title": "Thinking, Fast and Slow", "author": "Daniel Kahneman" },
-  { "isbn": "9780062316110", "title": "Sapiens", "author": "Yuval Noah Harari" },
-  { "isbn": "9780307887436", "title": "The Lean Startup", "author": "Eric Ries" },
-  { "isbn": "9781591847984", "title": "Hooked", "author": "Nir Eyal" },
-  { "isbn": "9780465050659", "title": "The Design of Everyday Things", "author": "Don Norman" },
-  { "isbn": "9780812981605", "title": "The Intelligent Investor", "author": "Benjamin Graham" },
-  { "isbn": "9780743273565", "title": "The Great Gatsby", "author": "F. Scott Fitzgerald" },
-  { "isbn": "9780374533557", "title": "Antifragile", "author": "Nassim Nicholas Taleb" }
+  {
+    "isbn": "9780671027032",
+    "title": "How to Win Friends and Influence People",
+    "author": "Dale Carnegie"
+  },
+  {
+    "isbn": "9780062316097",
+    "title": "Sapiens: A Brief History of Humankind",
+    "author": "Yuval Noah Harari"
+  },
+  {
+    "isbn": "9780062273208",
+    "title": "The Hard Thing About Hard Things",
+    "author": "Ben Horowitz"
+  },
+  {
+    "isbn": "9780385346658",
+    "title": "Never Eat Alone",
+    "author": "Keith Ferrazzi"
+  },
+  {
+    "isbn": "9781250179937",
+    "title": "Surrounded by Idiots",
+    "author": "Thomas Erikson"
+  },
+  {
+    "isbn": "9781250853479",
+    "title": "Win Every Argument",
+    "author": "Mehdi Hasan"
+  },
+  {
+    "isbn": "9780143130727",
+    "title": "Ikigai: The Japanese Secret to a Long and Happy Life",
+    "author": "Héctor García & Francesc Miralles"
+  },
+  {
+    "isbn": "9780544456860",
+    "title": "What If?",
+    "author": "Randall Munroe"
+  },
+  {
+    "isbn": "9781250123831",
+    "title": "Secrecy World",
+    "author": "Jake Bernstein"
+  },
+  {
+    "isbn": "9782246815693",
+    "title": "Le Théorème du Parapluie",
+    "author": "Mickaël Launay"
+  },
+  {
+    "isbn": "9782246815709",
+    "title": "Le Grand Roman des Maths",
+    "author": "Mickaël Launay"
+  },
+  {
+    "isbn": "9782266320573",
+    "title": "Ne Coupez Jamais la Poire en Deux",
+    "author": "Chris Voss"
+  },
+  {
+    "isbn": "9780500252314",
+    "title": "The Japanese Myth",
+    "author": "Joshua Frydman"
+  }
 ]
