@@ -42,10 +42,10 @@ export const translations = {
     about: {
       title: "About",
       recruiter: {
-        bio: "Cyprien Métivier--Robcis — Finance student, Paris. Hybrid profile: financial analysis, tech automation, and visual design. Looking for a 4-month internship in finance — open to Paris, Zürich, or Montréal.",
+        bio: "Cyprien Métivier--Robcis — Finance student, Paris. Hybrid profile: financial analysis, tech automation, and visual design.",
       },
       collaborator: {
-        bio: "Cyprien Métivier--Robcis — Finance student, Paris. Hybrid profile: financial analysis, tech automation, and visual design. Looking for a 4-month internship in finance — open to Paris, Zürich, or Montréal.",
+        bio: "Cyprien Métivier--Robcis — Finance student, Paris. Hybrid profile: financial analysis, tech automation, and visual design.",
         extra: "Available for freelance work in design, automation (n8n), and development.",
       },
       curious: {
@@ -143,10 +143,10 @@ export const translations = {
     about: {
       title: "À propos",
       recruiter: {
-        bio: "Cyprien Métivier--Robcis — Étudiant en finance, Paris. Profil hybride\u00A0: analyse financière, automatisation tech, et design visuel. À la recherche d\u2019un stage de 4 mois en finance — ouvert à Paris, Zürich, ou Montréal.",
+        bio: "Cyprien Métivier--Robcis — Étudiant en finance, Paris. Profil hybride\u00A0: analyse financière, automatisation tech, et design visuel.",
       },
       collaborator: {
-        bio: "Cyprien Métivier--Robcis — Étudiant en finance, Paris. Profil hybride\u00A0: analyse financière, automatisation tech, et design visuel. À la recherche d\u2019un stage de 4 mois en finance — ouvert à Paris, Zürich, ou Montréal.",
+        bio: "Cyprien Métivier--Robcis — Étudiant en finance, Paris. Profil hybride\u00A0: analyse financière, automatisation tech, et design visuel.",
         extra: "Disponible pour du freelance en design, automatisation (n8n) et développement.",
       },
       curious: {

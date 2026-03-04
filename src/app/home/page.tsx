@@ -180,6 +180,38 @@ export default function HomePage() {
               <div className="w-16 h-px bg-red" />
               <div className="w-2 h-2 bg-red rounded-full" />
             </motion.div>
+
+            {/* Currently seeking */}
+            <motion.div
+              initial={mInitial({ opacity: 0, y: 16 }, mob)}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={mViewport}
+              transition={{ duration: mDur(0.6, mob), delay: 0.5 }}
+              className="mt-12 border-l-2 border-red pl-6"
+            >
+              <span className="font-sans text-label tracking-ultra uppercase text-red/60 block mb-3">
+                {strings.sections.background.seekingLabel}
+              </span>
+              <p className="font-sans text-base leading-body text-black/60">
+                {strings.sections.background.seeking}
+              </p>
+              <motion.a
+                href="https://www.linkedin.com/in/m%C3%A9tivier--robcis-cyprien/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 mt-5 font-sans text-label tracking-widest uppercase text-black/40 hover:text-red transition-colors duration-300 group"
+                whileHover="hover"
+              >
+                {strings.sections.background.linkedin}
+                <motion.span
+                  className="inline-block"
+                  variants={{ hover: { x: 4 } }}
+                  transition={{ duration: 0.2, ease: [0.22, 1, 0.36, 1] }}
+                >
+                  &rarr;
+                </motion.span>
+              </motion.a>
+            </motion.div>
           </div>
         </motion.div>
 
@@ -310,37 +342,6 @@ export default function HomePage() {
           </a>
         </motion.div>
 
-        {/* Currently seeking */}
-        <motion.div
-          initial={mInitial({ opacity: 0, y: 16 }, mob)}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={mViewport}
-          transition={{ duration: mDur(0.6, mob), delay: 0.3 }}
-          className="mt-20 max-w-2xl border-l-2 border-red pl-6"
-        >
-          <span className="font-sans text-label tracking-ultra uppercase text-red/60 block mb-3">
-            {strings.sections.background.seekingLabel}
-          </span>
-          <p className="font-sans text-base leading-body text-black/60">
-            {strings.sections.background.seeking}
-          </p>
-          <motion.a
-            href="https://www.linkedin.com/in/m%C3%A9tivier--robcis-cyprien/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 mt-5 font-sans text-label tracking-widest uppercase text-black/40 hover:text-red transition-colors duration-300 group"
-            whileHover="hover"
-          >
-            {strings.sections.background.linkedin}
-            <motion.span
-              className="inline-block"
-              variants={{ hover: { x: 4 } }}
-              transition={{ duration: 0.2, ease: [0.22, 1, 0.36, 1] }}
-            >
-              &rarr;
-            </motion.span>
-          </motion.a>
-        </motion.div>
       </section>
 
       <CvModal
