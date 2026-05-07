@@ -51,11 +51,37 @@ export interface CreativeProject {
 
 export const creativeProjects: CreativeProject[] = [
   {
+    slug: "olympe-saas",
+    title: "Olympe — SaaS for Wealth Advisors",
+    titleFR: "Olympe — SaaS pour Conseillers en Gestion de Patrimoine",
+    tagline: "From 45 minutes of admin to 2 minutes and a click",
+    taglineFR: "45 minutes d’administratif réduit à 2 minutes et un clic",
+    category: "Web Development",
+    tags: ["Next.js", "TypeScript", "Tailwind CSS", "Motion", "SaaS", "Dark Mode"],
+    date: "April 2026",
+    dateFR: "Avril 2026",
+    sortDate: 202604,
+    thumbnail: "/creative/olympe/olympe-logo.svg",
+    heroImage: "/creative/olympe/olympe-logo.svg",
+    heroPosition: "bottom",
+    heroBg: "",
+    websiteUrl: "https://www.olympe-saas.com",
+    description:
+      "Every wealth advisor knows the feeling. The client meeting wraps up — a good one, an hour of trust built carefully — and then comes the part nobody talks about: the 45-minute admin tax. Notes to rewrite, a report to structure, tasks to extract, a follow-up email to draft. You glance at the clock and realize half your afternoon is gone, without moving a single client forward.\n\nThat’s the problem Olympe was built to solve.\n\nOlympe is a SaaS for independent French wealth advisors (CGPs). It connects to their video meetings — Zoom, Teams, Google Meet — or accepts an audio upload, then transcribes and generates a structured report in the native CGP format: meeting summary, key decisions, action items, next steps. The advisor reviews it in 2 minutes, exports to PDF or Word, and sends the follow-up email with one click.\n\nI designed and built the full marketing site: architecture, design system, UI components, six legal pages, and SEO — all from scratch in Next.js 16. The brand palette is a warm rust/terracotta, deliberately chosen to feel premium and human — a world away from the cold blues of most fintech.",
+    descriptionFR:
+      "Tout conseiller en gestion de patrimoine connaît ce moment. La réunion client se termine — une bonne heure, de la confiance construite patiemment — et arrive ce dont personne ne parle vraiment : la taxe administrative. Notes à rédiger, compte-rendu à structurer, tâches à extraire, email de suivi à composer. On regarde l’horloge et on réalise que l’après-midi est déjà entamée, sans avoir fait avancer un seul client.\n\nC’est ce problème qu’Olympe résout.\n\nOlympe est un SaaS vertical pour CGP indépendants français. Il se connecte aux réunions Zoom, Teams ou Meet — ou accepte un fichier audio — transcrit, et génère automatiquement un compte-rendu structuré au format CGP natif : synthèse, décisions clés, actions à mener, prochaines étapes. Le conseiller relit en 2 minutes, exporte en PDF ou Word, et envoie l’email de suivi en un clic.\n\nJ’ai conçu et développé l’intégralité du site marketing : architecture, design system, composants UI, six pages légales, SEO — de zéro sur Next.js 16. La palette est un rust/terracotta chaud, choisie pour paraître premium et humaine — loin des bleus froids de la fintech classique.",
+    detailText:
+      "The brief was clear: build something that makes wealth advisors’ lives measurably better, and looks like it means it.\n\nI started from a premium SaaS landing page template and rebuilt it from the ground up for OLYMPE — new brand, new editorial voice, new design system. The color story was one of the first decisions. I could have gone safe with dark blues or corporate greys. Instead I chose rust/terracotta (#c96b4e): warm, trustworthy, premium without the coldness of fintech defaults. The palette works in both light and dark mode with careful contrast tuning throughout.\n\nThe site is structured as a full conversion funnel. A Hero that hooks in three seconds (“Moins d’admin. Plus de clients.”). A Features Bento grid that shows the product rather than just describing it. A How It Works section with three crystal-clear steps. Auto-rotating testimonials in the authentic voice of a CGP. A Pricing section that’s direct and honest — no dark patterns, no buried asterisks. An FAQ that addresses real objections. A Footer with a clean call-to-action.\n\nBeyond the landing page, I wrote six secondary pages: a detailed Features breakdown with six anchored sections, a full Documentation guide, a Support page, Terms of Service, a GDPR-compliant Privacy Policy with all sub-processors listed (Supabase, Vercel, Deepgram, Anthropic, Stripe), and Legal Notice — all in plain French, no legalese.\n\nStack: Next.js 16 App Router, TypeScript strict mode, Tailwind CSS v4, Motion (ex-Framer Motion) for fluid animations, Lenis for buttery smooth scroll with dynamic offset handling, next-themes for dark mode. Zero backend, zero database — fully static, deployable to Vercel in one click.",
+    detailTextFR:
+      "Le brief était clair : construire quelque chose qui améliore mesurablement la vie des CGP, et qui le montre.\n\nJ’ai démarré d’un template de landing page SaaS premium et l’ai entièrement rebrandé pour OLYMPE — nouvelle identité, nouvelle voix éditoriale, nouveau design system. Le choix de couleur a été l’une des premières décisions. J’aurais pu aller sur du bleu corporate ou du gris institutionnel. J’ai choisi le rust/terracotta (#c96b4e) : chaud, crédible, premium sans la froideur de la fintech classique. La palette fonctionne en mode clair et sombre avec un soin particulier apporté aux contrastes.\n\nLe site est structuré comme un tunnel de conversion complet. Un Hero qui accroche en trois secondes (« Moins d’admin. Plus de clients. »). Un Features Bento qui montre le produit plutôt que de simplement l’expliquer. Un How It Works en trois étapes limpides. Des témoignages en rotation automatique dans la voix authentique d’un CGP. Un Pricing direct et honnête — zéro dark pattern, zéro astérisque caché. Une FAQ qui répond aux vraies objections. Un Footer avec un CTA propre.\n\nAu-delà de la landing page, j’ai rédigé six pages secondaires : Fonctionnalités détaillées avec six sections ancrées, Documentation complète, Support, CGU, Politique de confidentialité conforme RGPD avec tous les sous-traitants listés (Supabase, Vercel, Deepgram, Anthropic, Stripe), et Mentions légales — tout en français clair, sans jargon juridique.\n\nStack : Next.js 16 App Router, TypeScript strict, Tailwind CSS v4, Motion pour les animations fluides, Lenis pour le scroll élégant avec offset dynamique, next-themes pour le dark mode. Zéro backend, zéro base de données — entièrement statique, déployable sur Vercel en un clic.",
+    images: [],
+  },
+  {
     slug: "finance-tracker-app",
     title: "Finance Tracker App",
     titleFR: "Finance Tracker App",
     tagline: "A personal finance app, from Illustrator to Xcode",
-    taglineFR: "Une app de finances personnelles, d\u2019Illustrator \u00E0 Xcode",
+    taglineFR: "Une app de finances personnelles, d’Illustrator à Xcode",
     category: "Product Design & Development",
     tags: ["Illustrator", "Xcode", "Swift", "UI Design"],
     date: "October 2024",
@@ -68,15 +94,15 @@ export const creativeProjects: CreativeProject[] = [
     description:
       "I built this app because I already had an Excel spreadsheet to track my finances: budgeting, daily expenses, income - but opening a laptop every time felt tedious. I wanted something simple, clean, and always in my pocket.\n\nI started by designing the full UI in Illustrator, using native Apple components for a familiar feel. Then I coded it in Xcode, one of my first real coding projects, built with the early days of ChatGPT as a co-pilot.\n\nThe app has three core sections: a Dashboard (monthly overview of income vs. expenses), a Tracker (add expenses and income, see your live balance), and a Budget Planner (set spending and income targets). A Settings tab lets you choose your currency.",
     descriptionFR:
-      "J\u2019ai cr\u00E9\u00E9 cette app parce que j\u2019avais d\u00E9j\u00E0 un Excel pour tracker mes finances, budget, d\u00E9penses quotidiennes, revenus - mais ouvrir un ordi \u00E0 chaque fois, c\u2019\u00E9tait contraignant. Je voulais quelque chose de simple, propre, et toujours dans ma poche.\n\nJ\u2019ai commenc\u00E9 par designer toute l\u2019interface sur Illustrator, en utilisant les composants Apple natifs. Ensuite j\u2019ai cod\u00E9 sur Xcode, un de mes premiers vrais projets de code, construit avec les d\u00E9buts de ChatGPT comme co-pilote.\n\nL\u2019app a trois sections : un Dashboard (vue mensuelle revenus/d\u00E9penses), un Tracker (ajouter d\u00E9penses et revenus, voir le solde en temps r\u00E9el), et un Budget Planner (d\u00E9finir ses objectifs). Un onglet Settings pour choisir sa devise.",
+      "J’ai créé cette app parce que j’avais déjà un Excel pour tracker mes finances, budget, dépenses quotidiennes, revenus - mais ouvrir un ordi à chaque fois, c’était contraignant. Je voulais quelque chose de simple, propre, et toujours dans ma poche.\n\nJ’ai commencé par designer toute l’interface sur Illustrator, en utilisant les composants Apple natifs. Ensuite j’ai codé sur Xcode, un de mes premiers vrais projets de code, construit avec les débuts de ChatGPT comme co-pilote.\n\nL’app a trois sections : un Dashboard (vue mensuelle revenus/dépenses), un Tracker (ajouter dépenses et revenus, voir le solde en temps réel), et un Budget Planner (définir ses objectifs). Un onglet Settings pour choisir sa devise.",
     images: [],
   },
   {
     slug: "elljomi-logo-redesign",
-    title: "Elljomi \u2014 Logo Redesign",
-    titleFR: "Elljomi \u2014 Refonte du Logo",
+    title: "Elljomi — Logo Redesign",
+    titleFR: "Elljomi — Refonte du Logo",
     tagline: "Modernizing a Swiss catering brand",
-    taglineFR: "Moderniser l\u2019identit\u00E9 d\u2019un traiteur suisse",
+    taglineFR: "Moderniser l’identité d’un traiteur suisse",
     category: "Branding",
     tags: ["Illustrator", "Brand Identity", "Logo Design"],
     date: "December 2024",
@@ -86,13 +112,13 @@ export const creativeProjects: CreativeProject[] = [
     heroBg: "",
     websiteUrl: "https://elljomi.ch",
     description:
-      "Elljomi is a Swiss catering company whose logo felt dated and visually heavy. The brief was simple: modernize it while keeping the brand\u2019s identity intact. I kept the circular structure and the core elements \u2014 the chef\u2019s hat, the wordmark, the stars \u2014 but stripped everything back. Lighter strokes, cleaner typography, more breathing room. The result is a logo that works on both light and dark backgrounds, scales properly at any size, and feels premium without losing its warmth. Delivered with a full brand guidelines document.",
+      "Elljomi is a Swiss catering company whose logo felt dated and visually heavy. The brief was simple: modernize it while keeping the brand’s identity intact. I kept the circular structure and the core elements — the chef’s hat, the wordmark, the stars — but stripped everything back. Lighter strokes, cleaner typography, more breathing room. The result is a logo that works on both light and dark backgrounds, scales properly at any size, and feels premium without losing its warmth. Delivered with a full brand guidelines document.",
     descriptionFR:
-      "Elljomi est un traiteur suisse dont le logo paraissait dat\u00E9 et visuellement trop charg\u00E9. La mission\u00A0: le moderniser tout en pr\u00E9servant l\u2019identit\u00E9 de la marque. J\u2019ai conserv\u00E9 la structure circulaire et les \u00E9l\u00E9ments cl\u00E9s \u2014 la toque, le wordmark, les \u00E9toiles \u2014 mais j\u2019ai tout \u00E9pur\u00E9. Traits plus fins, typographie plus claire, plus d\u2019espace. Livr\u00E9 avec un document de brand guidelines complet.",
+      "Elljomi est un traiteur suisse dont le logo paraissait daté et visuellement trop chargé. La mission : le moderniser tout en préservant l’identité de la marque. J’ai conservé la structure circulaire et les éléments clés — la toque, le wordmark, les étoiles — mais j’ai tout épuré. Traits plus fins, typographie plus claire, plus d’espace. Livré avec un document de brand guidelines complet.",
     detailText:
-      "The original logo was a raster image \u2014 pixelated at large sizes and impossible to scale cleanly. The first step was to fully vectorize it in Illustrator, rebuilding every element from scratch as clean vector paths.\n\nBeyond vectorization, I redesigned the details while keeping the original DNA intact. The strokes are cleaner and more consistent. The chef\u2019s hat is now better integrated into the composition, sitting more naturally above the wordmark. \u201CCatering\u201D moved to the right, the cutlery icon shifted left \u2014 creating better visual balance. The decorative swipe line underneath was removed entirely, as it hurt readability. The three stars went from white to gold, adding a touch of warmth and premium feel.",
+      "The original logo was a raster image — pixelated at large sizes and impossible to scale cleanly. The first step was to fully vectorize it in Illustrator, rebuilding every element from scratch as clean vector paths.\n\nBeyond vectorization, I redesigned the details while keeping the original DNA intact. The strokes are cleaner and more consistent. The chef’s hat is now better integrated into the composition, sitting more naturally above the wordmark. “Catering” moved to the right, the cutlery icon shifted left — creating better visual balance. The decorative swipe line underneath was removed entirely, as it hurt readability. The three stars went from white to gold, adding a touch of warmth and premium feel.",
     detailTextFR:
-      "Le logo original \u00E9tait une image matricielle \u2014 pixelis\u00E9e \u00E0 grande taille et impossible \u00E0 agrandir proprement. La premi\u00E8re \u00E9tape a \u00E9t\u00E9 de le vectoriser enti\u00E8rement dans Illustrator, en reconstruisant chaque \u00E9l\u00E9ment en trac\u00E9s vectoriels propres.\n\nAu-del\u00E0 de la vectorisation, j\u2019ai redesign\u00E9 les d\u00E9tails tout en conservant l\u2019ADN original. Les traits sont plus nets et coh\u00E9rents. La toque est mieux int\u00E9gr\u00E9e dans la composition, plac\u00E9e plus naturellement au-dessus du wordmark. \u00ABCatering\u00BB a \u00E9t\u00E9 d\u00E9plac\u00E9 \u00E0 droite, les couverts \u00E0 gauche \u2014 pour un meilleur \u00E9quilibre visuel. La ligne d\u00E9corative en bas a \u00E9t\u00E9 supprim\u00E9e, elle nuisait \u00E0 la lisibilit\u00E9. Les trois \u00E9toiles sont pass\u00E9es du blanc au jaune dor\u00E9, apportant chaleur et \u00E9l\u00E9gance.",
+      "Le logo original était une image matricielle — pixelisée à grande taille et impossible à agrandir proprement. La première étape a été de le vectoriser entièrement dans Illustrator, en reconstruisant chaque élément en tracés vectoriels propres.\n\nAu-delà de la vectorisation, j’ai redesigné les détails tout en conservant l’ADN original. Les traits sont plus nets et cohérents. La toque est mieux intégrée dans la composition, placée plus naturellement au-dessus du wordmark. «Catering» a été déplacé à droite, les couverts à gauche — pour un meilleur équilibre visuel. La ligne décorative en bas a été supprimée, elle nuisait à la lisibilité. Les trois étoiles sont passées du blanc au jaune doré, apportant chaleur et élégance.",
     images: [],
     beforeAfter: {
       before: "/creative/elljomi/elljomi-logo-before.png",
@@ -129,10 +155,10 @@ export const creativeProjects: CreativeProject[] = [
   },
   {
     slug: "caribbean-islands-comparison",
-    title: "Caribbean Islands \u2014 Data Comparison",
-    titleFR: "Îles Caraïbes \u2014 Comparaison de données",
+    title: "Caribbean Islands — Data Comparison",
+    titleFR: "Îles Caraïbes — Comparaison de données",
     tagline: "Comparing economic indicators across three island nations",
-    taglineFR: "Comparaison d\u2019indicateurs économiques entre trois nations insulaires",
+    taglineFR: "Comparaison d’indicateurs économiques entre trois nations insulaires",
     category: "Data Visualization",
     tags: ["Data Visualization", "Academic", "Economics", "Illustrator"],
     date: "2025",
@@ -145,10 +171,10 @@ export const creativeProjects: CreativeProject[] = [
   },
   {
     slug: "maldives-mauritius-comparison",
-    title: "Maldives & Mauritius \u2014 Data Comparison",
-    titleFR: "Maldives & Maurice \u2014 Comparaison de donn\u00E9es",
+    title: "Maldives & Mauritius — Data Comparison",
+    titleFR: "Maldives & Maurice — Comparaison de données",
     tagline: "Comparing two Indian Ocean island nations",
-    taglineFR: "Comparaison de deux nations insulaires de l\u2019oc\u00E9an Indien",
+    taglineFR: "Comparaison de deux nations insulaires de l’océan Indien",
     category: "Data Visualization",
     tags: ["Data Visualization", "Academic", "Economics", "Illustrator"],
     date: "2025",
