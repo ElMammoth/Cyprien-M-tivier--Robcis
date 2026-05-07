@@ -115,6 +115,10 @@ export default function CreativeDetailClient() {
               className="inline-flex items-center gap-2 mt-5 font-sans text-label tracking-widest uppercase text-black/40 hover:text-red transition-colors duration-300 group"
               whileHover="hover"
             >
+              {project.faviconUrl && (
+                // eslint-disable-next-line @next/next/no-img-element
+                <img src={project.faviconUrl} alt="" width={16} height={16} className="opacity-60 group-hover:opacity-100 transition-opacity duration-300" />
+              )}
               {project.websiteUrl.replace(/^https?:\/\//, "")}
               <motion.span
                 className="inline-block"
