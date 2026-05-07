@@ -177,8 +177,8 @@ export default function HomePage() {
               transition={{ duration: mDur(0.6, mob), delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
               className="mt-12 flex items-center gap-4 origin-left"
             >
-              <div className="w-16 h-px bg-red" />
-              <div className="w-2 h-2 bg-red rounded-full" />
+              <div className="w-16 h-px bg-orange" />
+              <div className="w-2 h-2 bg-orange rounded-full" />
             </motion.div>
 
             {/* Currently seeking */}
@@ -187,9 +187,9 @@ export default function HomePage() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={mViewport}
               transition={{ duration: mDur(0.6, mob), delay: 0.5 }}
-              className="mt-12 border-l-2 border-red pl-6"
+              className="mt-12 border-l-2 border-orange pl-6"
             >
-              <span className="font-sans text-label tracking-ultra uppercase text-red/60 block mb-3">
+              <span className="font-sans text-label tracking-ultra uppercase text-orange block mb-3">
                 {strings.sections.background.seekingLabel}
               </span>
               <p className="font-sans text-base leading-body text-black/60">
@@ -221,7 +221,7 @@ export default function HomePage() {
           whileInView={{ opacity: 1 }}
           viewport={mViewport}
           transition={{ duration: mDur(0.5, mob), delay: 0.5 }}
-          className="absolute top-24 right-12 w-8 h-24 bg-orange/10 hidden lg:block"
+          className="absolute top-24 right-12 w-8 h-24 bg-orange/30 hidden lg:block"
         />
       </section>
 
@@ -261,7 +261,7 @@ export default function HomePage() {
               <div className="absolute left-0 top-2 bottom-0 w-px bg-black/10" />
 
               {/* Dot marker */}
-              <div className="absolute left-0 top-[7px] w-[7px] h-[7px] -translate-x-[3px] bg-black/20 group-hover:bg-red transition-colors duration-300" />
+              <div className="absolute left-0 top-[7px] w-[7px] h-[7px] -translate-x-[3px] bg-black/20 group-hover:bg-orange transition-colors duration-300" />
 
               {/* Year — bold, offset */}
               <div className="flex flex-col md:flex-row md:items-baseline md:gap-6 mb-3">
@@ -395,7 +395,7 @@ export default function HomePage() {
                 >
                   <div className="flex flex-col md:flex-row md:items-baseline gap-4 md:gap-0">
                     {/* Number */}
-                    <span className="font-serif text-5xl md:text-7xl lg:text-8xl font-normal leading-none text-black/[0.07] group-hover:text-red/20 transition-colors duration-500 md:w-32 lg:w-40 shrink-0">
+                    <span className="font-serif text-5xl md:text-7xl lg:text-8xl font-normal leading-none text-black/[0.07] group-hover:text-orange/25 transition-colors duration-500 md:w-32 lg:w-40 shrink-0">
                       {String(i + 1).padStart(2, "0")}
                     </span>
 
@@ -406,7 +406,7 @@ export default function HomePage() {
                       </h3>
 
                       <div className="flex flex-wrap items-center gap-x-4 gap-y-1 mt-3">
-                        <span className="font-sans text-micro tracking-widest uppercase text-black/40 group-hover:text-red/60 transition-colors duration-300">
+                        <span className="font-sans text-micro tracking-widest uppercase text-black/40 group-hover:text-orange/70 transition-colors duration-300">
                           {project.category}
                         </span>
                         {year && (

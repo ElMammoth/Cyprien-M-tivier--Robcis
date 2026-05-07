@@ -37,3 +37,11 @@ URL : www.cyprienmetivier--robcis.me
 - Le déploiement GitHub Pages est géré par `.github/workflows/deploy.yml`
 - La langue et le type de visiteur sont persistés dans localStorage
 - Les traductions complètes sont dans `src/lib/translations.ts`
+
+## Étapes à venir
+
+### Projet Olympe (à intégrer dans les projets créatifs)
+- Accès au repo Olympe à fournir pour récupérer contexte, assets, description
+- Ajouter une entrée dans `src/data/creative-projects.ts`
+- Préparer les assets dans `public/creative/olympe/`
+- Rédiger description EN + FR et définir les champs `heroImage`, `images`, `tags`, `category`

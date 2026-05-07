@@ -43,7 +43,7 @@ export default function CreativeDetailClient() {
     <div className="min-h-screen bg-cream">
       <Navigation locale={locale} onLocaleChange={setLocale} />
 
-      {heroSrc && (
+      {heroSrc && (!project.heroPosition || project.heroPosition === "top") && (
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -90,7 +90,7 @@ export default function CreativeDetailClient() {
             {title}
           </h1>
 
-          <span className="font-sans text-label tracking-widest uppercase text-red/60 block mb-5">
+          <span className="font-sans text-label tracking-widest uppercase text-orange block mb-5">
             {project.category}
           </span>
 
@@ -145,6 +145,25 @@ export default function CreativeDetailClient() {
             </motion.p>
           ))}
         </motion.div>
+
+        {heroSrc && project.heroPosition === "bottom" && (
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={mViewport}
+            transition={{ duration: mDur(0.6, mob) }}
+            className="w-full max-w-5xl mt-4 mb-20"
+          >
+            <Image
+              src={heroSrc}
+              alt={title}
+              width={2400}
+              height={1350}
+              className="w-full h-auto max-h-[600px] object-contain"
+              priority
+            />
+          </motion.div>
+        )}
 
         {project.images.length > 0 && (
           <div className="grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-6 max-w-5xl">
