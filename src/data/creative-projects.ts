@@ -45,6 +45,8 @@ export interface CreativeProject {
   websiteUrl?: string;
   /** YYYYMM for sorting (e.g. 202510 for October 2025). Higher = more recent. */
   sortDate?: number;
+  /** Where to render the hero image relative to the text content. Defaults to 'top'. */
+  heroPosition?: 'top' | 'bottom';
 }
 
 export const creativeProjects: CreativeProject[] = [
@@ -61,6 +63,7 @@ export const creativeProjects: CreativeProject[] = [
     sortDate: 202410,
     thumbnail: "/creative/finance-tracker/Visuals_Finance_Tracker_App.png",
     heroImage: "/creative/finance-tracker/Visuals_Finance_Tracker_App.png",
+    heroPosition: "bottom",
     heroBg: "",
     description:
       "I built this app because I already had an Excel spreadsheet to track my finances: budgeting, daily expenses, income - but opening a laptop every time felt tedious. I wanted something simple, clean, and always in my pocket.\n\nI started by designing the full UI in Illustrator, using native Apple components for a familiar feel. Then I coded it in Xcode, one of my first real coding projects, built with the early days of ChatGPT as a co-pilot.\n\nThe app has three core sections: a Dashboard (monthly overview of income vs. expenses), a Tracker (add expenses and income, see your live balance), and a Budget Planner (set spending and income targets). A Settings tab lets you choose your currency.",
